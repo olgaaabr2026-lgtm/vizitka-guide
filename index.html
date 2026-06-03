@@ -10,15 +10,15 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F9FAFB;
+  --bg:#F5F3EC;
   --surface:#FFFFFF;
-  --surface2:#F3F4F6;
-  --border:#E5E7EB;
-  --border2:#D1D5DB;
-  --gold:#C29B62; /* Спокойный золотой как на референсе */
+  --surface2:#EAE6DF;
+  --border:#E2DDD3;
+  --border2:#C8C3B8;
+  --gold:#C29B62;
   --gold-lt:#D4AF78;
   --gold-dim:#FDF8F3;
-  --hero-bg:#111827; /* Глубокий сине-черный */
+  --hero-bg:#111827;
   --hero-bg2:#1E293B;
   --text:#111827;
   --muted:#4B5563;
@@ -84,7 +84,7 @@ a{color:inherit;text-decoration:none}
 .analysis-body{display:grid;grid-template-columns:1fr;gap:0}
 
 /* preview */
-.analysis-preview{border-bottom:1px solid var(--border);background:#F9FAFB}
+.analysis-preview{border-bottom:1px solid var(--border);background:var(--bg)}
 .browser-bar{display:flex;align-items:center;gap:6px;padding:10px 16px;background:var(--surface2);border-bottom:1px solid var(--border)}
 .browser-dot{width:10px;height:10px;border-radius:50%}
 .browser-dot.r{background:#FF6058}.browser-dot.y{background:#FFBD2E}.browser-dot.g{background:#28CA41}
@@ -452,10 +452,10 @@ a{color:inherit;text-decoration:none}
           <div class="proto-feat"><strong>Бургер-меню</strong> + sticky CTA на мобильном</div>
           <div class="proto-feat"><strong>Форма обратной связи</strong> с подтверждением отправки</div>
         </div>
-        <a href="#" onclick="openProto(event)" class="proto-cta">
+        <button onclick="openProto(event)" class="proto-cta">
           Открыть прототип
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -823,7 +823,7 @@ a{color:inherit;text-decoration:none}
 
 <footer class="guide-footer">
   <p>Гид по сайту-визитке для финансовых руководителей · 2025</p>
-  <p style="color:var(--gold-dim)">CFO · Head of Finance · Head of Business Planning</p>
+  <p style="color:var(--muted2)">CFO · Head of Finance · Head of Business Planning</p>
 </footer>
 
 <!-- ── Скрытый шаблон прототипа ── -->
@@ -2103,24 +2103,28 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 </script>
 
 <script>
-const nav = document.getElementById('top-nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+const navEl = document.getElementById('top-nav');
+window.addEventListener('scroll',()=>{navEl.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
 },{threshold:.08,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// Открытие прототипа в новой вкладке
+// Правильная логика открытия прототипа в новой вкладке
 function openProto(e) {
   if (e) e.preventDefault();
-  // Забираем HTML прототипа из скрытого шаблона
-  const protoContent = document.getElementById('proto-html').textContent;
   
-  // Создаем Blob и генерируем временный URL
-  const blob = new Blob([protoContent], { type: 'text/html;charset=utf-8' });
+  // 1. Забираем сырой текст
+  let rawContent = document.getElementById('proto-html').textContent;
+  
+  // 2. Снимаем экранирование со скриптов внутри шаблона
+  rawContent = rawContent.replace(/<\\\/script>/g, '<\/' + 'script>');
+  
+  // 3. Создаем Blob и генерируем URL
+  const blob = new Blob([rawContent], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   
-  // Открываем новую вкладку
+  // 4. Открываем
   window.open(url, '_blank');
 }
 </script>
