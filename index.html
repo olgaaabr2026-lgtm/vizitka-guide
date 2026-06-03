@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гид: Сайт-визитка для CFO и руководителей финансов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090B;--surface:#111115;--surface2:#161619;
+  --border:#1C1C21;--border2:#252529;
+  --gold:#B8965A;--gold-lt:#D4AF78;--gold-dim:#6B5330;
+  --green:#3A7A5A;--green-lt:#4A9A6A;--green-dim:#1A3A2A;
+  --text:#EDE9E2;--muted:#6B6860;--muted2:#3A3835;--muted3:#2A2A2E;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Manrope',system-ui,sans-serif;
+  --px:20px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:900;opacity:.5}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px var(--px);background:rgba(9,9,11,0);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.top-nav.scrolled{background:rgba(9,9,11,.97);border-color:var(--border)}
+.top-nav-logo{font-family:var(--serif);font-size:17px;font-weight:300;letter-spacing:.08em}
+.top-nav-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:none}
+
+/* HERO */
+.guide-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--px) 60px;position:relative;overflow:hidden}
+.hero-deco-line{position:absolute;top:0;bottom:0;left:calc(var(--px) + 90px);width:1px;background:var(--border);opacity:.5}
+.hero-deco-h{position:absolute;top:55%;left:0;right:0;height:1px;background:var(--border);opacity:.35}
+.hero-chapter{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+.hero-chapter::before{content:'';width:24px;height:1px;background:var(--gold)}
+.guide-hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(44px,11vw,100px);line-height:.92;letter-spacing:-.02em;margin-bottom:40px}
+.guide-hero h1 em{font-style:italic;color:var(--gold)}
+.hero-desc{max-width:560px;font-size:16px;font-weight:300;line-height:1.85;color:#9B9790;margin-bottom:48px}
+.hero-desc strong{color:var(--text);font-weight:500}
+.hero-toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc-pill{display:flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--border2);font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--muted);transition:border-color .25s,color .25s}
+.toc-pill:hover{border-color:var(--gold);color:var(--gold)}
+.toc-pill .pill-num{font-family:var(--serif);font-size:13px;color:var(--muted2)}
+
+/* SECTION */
+.guide-section{padding:80px var(--px);position:relative}
+.guide-section+.guide-section{border-top:1px solid var(--border)}
+.section-intro{margin-bottom:52px}
+.section-num{font-family:var(--serif);font-size:80px;font-weight:300;color:var(--muted3);line-height:1;letter-spacing:-.04em;margin-bottom:-16px}
+.section-tag{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-tag::before{content:'';width:20px;height:1px;background:var(--gold)}
+.section-title{font-family:var(--serif);font-size:clamp(28px,5vw,48px);font-weight:300;line-height:1.08;letter-spacing:-.01em;margin-bottom:16px}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-lead{font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;max-width:640px}
+
+/* ── АНАЛИЗ САЙТА (ananeva.pro) ── */
+.analysis-hero{
+  background:var(--surface);border:1px solid var(--gold-dim);
+  display:flex;flex-direction:column;
+}
+.analysis-banner{
+  background:linear-gradient(90deg,#1A1208,#0F0D0A);
+  padding:12px 24px;display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid var(--gold-dim);
+}
+.analysis-dot{width:7px;height:7px;background:var(--gold);border-radius:50%}
+.analysis-banner-text{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.analysis-body{display:grid;grid-template-columns:1fr;gap:0}
+
+/* preview */
+.analysis-preview{border-bottom:1px solid var(--border)}
+.browser-bar{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--muted3);border-bottom:1px solid var(--border)}
+.browser-dot{width:8px;height:8px;border-radius:50%}
+.browser-dot.r{background:#FF6058}.browser-dot.y{background:#FFBD2E}.browser-dot.g{background:#28CA41}
+.browser-url{flex:1;margin:0 10px;background:var(--border);border-radius:3px;padding:3px 10px;font-size:10px;color:var(--muted);letter-spacing:.04em}
+.preview-scene{height:220px;overflow:hidden;position:relative}
+/* ananeva preview */
+.prev-ananeva{background:#F8F9FA;height:100%;display:flex;flex-direction:column}
+.prev-an-nav{background:#1A2744;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.prev-an-logo{width:90px;height:16px;background:white;border-radius:2px;opacity:.9}
+.prev-an-navlinks{display:flex;gap:10px}
+.prev-an-navlinks span{width:44px;height:4px;background:rgba(255,255,255,.25);border-radius:2px}
+.prev-an-cta-btn{width:80px;height:20px;background:#2A7A5A;border-radius:2px;display:flex;align-items:center;justify-content:center}
+.prev-an-cta-btn span{font-size:7px;color:white;font-family:sans-serif;letter-spacing:.04em}
+.prev-an-hero{display:flex;flex:1;padding:14px 16px;gap:12px;align-items:center}
+.prev-an-text{flex:1;display:flex;flex-direction:column;gap:6px}
+.prev-an-label{width:55%;height:5px;background:#2A7A5A;border-radius:2px}
+.prev-an-h1{width:90%;height:12px;background:#1A2744;border-radius:2px}
+.prev-an-h2{width:80%;height:12px;background:#1A2744;border-radius:2px}
+.prev-an-sub{width:95%;height:5px;background:#C8D4DC;border-radius:2px;margin-top:2px}
+.prev-an-sub2{width:85%;height:5px;background:#C8D4DC;border-radius:2px}
+.prev-an-btn{width:90px;height:22px;background:#2A7A5A;border-radius:2px;margin-top:6px}
+.prev-an-stats{width:120px;flex-shrink:0;display:flex;flex-direction:column;gap:5px}
+.prev-an-stat{background:#1A2744;padding:7px 9px;border-radius:3px}
+.prev-an-stat .num{font-size:15px;font-weight:700;color:#F0C060;font-family:sans-serif;line-height:1}
+.prev-an-stat .lbl{height:4px;background:rgba(255,255,255,.15);border-radius:1px;margin-top:3px;width:70%}
+.prev-an-pains{display:flex;border-top:1px solid #E0E8F0;flex-shrink:0}
+.prev-an-pain{flex:1;padding:7px 10px;border-right:1px solid #E0E8F0;display:flex;flex-direction:column;gap:3px}
+.prev-an-pain:last-child{border-right:none}
+.prev-an-pain .pt{height:5px;background:#1A2744;border-radius:1px;width:80%}
+.prev-an-pain .ps{height:4px;background:#C8D4DC;border-radius:1px;width:90%}
+
+/* analysis info */
+.analysis-info{padding:32px 24px;display:flex;flex-direction:column;gap:24px}
+.analysis-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.badge{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px}
+.badge-ru{background:var(--gold-dim);color:var(--gold-lt)}
+.badge-fin{background:#1A2A20;color:#4A9A6A}
+.badge-tilda{background:#1A2A10;color:#6AC06A}
+.badge-direct{background:#2A1A00;color:#E8A030}
+.site-name-big{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1.2}
+.site-url-big{font-size:11px;color:var(--gold);letter-spacing:.06em;font-weight:500;margin-top:4px}
+
+/* pros / cons */
+.pros-cons{display:grid;grid-template-columns:1fr;gap:16px}
+.pc-block{border:1px solid var(--border2);padding:20px}
+.pc-title{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.pc-title.good{color:#4A9A6A}
+.pc-title.fix{color:#C88A3A}
+.pc-title::before{content:'';width:18px;height:1px}
+.pc-title.good::before{background:#4A9A6A}
+.pc-title.fix::before{background:#C88A3A}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pc-list li{font-size:13px;font-weight:300;color:var(--muted);line-height:1.75;display:flex;align-items:baseline;gap:8px}
+.pc-list li::before{font-size:11px;flex-shrink:0;font-weight:600}
+.pc-list.good li::before{content:'✓';color:#4A9A6A}
+.pc-list.fix li::before{content:'→';color:#C88A3A}
+.pc-list li strong{color:var(--text);font-weight:500}
+.analysis-cta{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);padding:10px 20px;transition:background .25s,color .25s;align-self:flex-start}
+.analysis-cta:hover{background:var(--gold);color:var(--bg)}
+
+/* ── PROTOTYPE BLOCK ── */
+.proto-block{background:var(--surface);border:1px solid var(--border)}
+.proto-header{padding:14px 24px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--border);background:var(--muted3)}
+.proto-badge{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:4px 10px}
+.proto-title{font-size:13px;font-weight:500;color:var(--text)}
+.proto-body{display:grid;grid-template-columns:1fr;gap:0}
+.proto-preview{height:260px;overflow:hidden;border-bottom:1px solid var(--border);position:relative;background:#09090B}
+/* mini cfo-vizitka preview */
+.pv-nav{background:#09090B;border-bottom:1px solid #1C1C21;padding:8px 16px;display:flex;justify-content:space-between;align-items:center}
+.pv-navlogo{font-family:serif;font-size:11px;color:#EDE9E2;letter-spacing:.06em}
+.pv-navlinks{display:flex;gap:10px}
+.pv-navlinks span{width:30px;height:4px;background:#1C1C21;border-radius:1px}
+.pv-cta-nav{width:70px;height:16px;background:#B8965A;border-radius:0}
+.pv-hero{display:grid;grid-template-columns:1fr 80px;gap:12px;padding:16px;background:#09090B;border-bottom:1px solid #1C1C21}
+.pv-hero-txt{display:flex;flex-direction:column;gap:5px}
+.pv-label{width:50%;height:4px;background:#6B5330;border-radius:1px}
+.pv-h1a{width:85%;height:11px;background:#EDE9E2;border-radius:1px}
+.pv-h1b{width:65%;height:11px;background:#B8965A;border-radius:1px;font-style:italic}
+.pv-sub{width:90%;height:4px;background:#2A2A2E;border-radius:1px;margin-top:2px}
+.pv-sub2{width:75%;height:4px;background:#2A2A2E;border-radius:1px}
+.pv-btn{width:80px;height:18px;background:#B8965A;border-radius:0;margin-top:6px}
+.pv-photo{background:#111115;border:1px solid #1C1C21;display:flex;align-items:center;justify-content:center}
+.pv-photo span{font-family:serif;font-size:18px;color:#2A2A2E}
+.pv-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #1C1C21}
+.pv-stat{padding:8px 10px;border-right:1px solid #1C1C21}
+.pv-stat:last-child{border-right:none}
+.pv-stat .sn{height:8px;background:#EDE9E2;border-radius:1px;width:50%;margin-bottom:4px}
+.pv-stat .sl{height:4px;background:#1C1C21;border-radius:1px;width:80%}
+.pv-exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#1C1C21;padding:0}
+.pv-exp-card{background:#111115;padding:10px;border-left:2px solid #6B5330}
+.pv-exp-num{height:4px;background:#2A2A2E;border-radius:1px;width:20%;margin-bottom:6px}
+.pv-exp-t{height:6px;background:#3A3835;border-radius:1px;width:85%;margin-bottom:3px}
+.pv-exp-s{height:4px;background:#2A2A2E;border-radius:1px;width:70%}
+
+.proto-info{padding:28px 24px}
+.proto-name{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:6px}
+.proto-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:20px;max-width:600px}
+.proto-features{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:24px}
+.proto-feat{display:flex;align-items:baseline;gap:10px;font-size:12px;color:#9B9790}
+.proto-feat::before{content:'→';color:var(--gold);font-size:11px;flex-shrink:0}
+.proto-feat strong{color:var(--text);font-weight:500}
+.proto-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;background:var(--gold);color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:background .25s}
+.proto-cta:hover{background:var(--gold-lt)}
+
+/* ── DESIGN ADVICE ── */
+.advice-grid{display:grid;grid-template-columns:1fr;gap:2px;background:var(--border);margin-bottom:48px}
+.advice-card{background:var(--surface);padding:32px 28px;position:relative;overflow:hidden;transition:background .25s}
+.advice-card:hover{background:var(--surface2)}
+.advice-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--gold);transition:height .4s}
+.advice-card:hover::before{height:100%}
+.advice-num{font-family:var(--serif);font-size:48px;font-weight:300;color:var(--muted3);line-height:1;margin-bottom:12px;letter-spacing:-.03em}
+.advice-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px}
+.advice-body{font-size:13px;font-weight:300;color:var(--muted);line-height:1.85}
+.advice-body strong{color:var(--text);font-weight:500}
+.advice-body em{color:var(--gold);font-style:normal}
+.advice-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.advice-tag{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--muted2);padding:3px 8px}
+
+/* palette swatches */
+.palette-row{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.swatch{height:28px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;letter-spacing:.06em;flex:1;min-width:40px}
+
+/* block order visual */
+.block-order{display:flex;flex-direction:column;gap:3px;margin-top:12px}
+.bo-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border:1px solid var(--border2);font-size:11px;color:var(--muted)}
+.bo-num{font-family:var(--serif);font-size:13px;color:var(--gold);width:20px;flex-shrink:0}
+.bo-name{font-weight:500;color:var(--text);flex:1}
+.bo-bar{height:6px;background:var(--gold-dim);border-radius:1px}
+.bo-why{font-size:10px;color:var(--muted2);flex-shrink:0;text-align:right}
+
+/* ── GALLERIES ── */
+.insp-intro{margin-bottom:36px}
+.insp-grid{display:grid;grid-template-columns:1fr;gap:2px;background:var(--border);margin-bottom:48px}
+.insp-card{background:var(--surface);display:flex;align-items:center;gap:18px;padding:20px 22px;transition:background .25s;color:var(--text)}
+.insp-card:hover{background:var(--surface2)}
+.insp-icon{width:48px;height:48px;flex-shrink:0;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:18px;font-family:var(--serif);font-weight:300;transition:border-color .25s,color .25s}
+.insp-card:hover .insp-icon{border-color:var(--gold);color:var(--gold)}
+.insp-info{flex:1;min-width:0}
+.insp-name{font-size:14px;font-weight:500;margin-bottom:2px}
+.insp-meta{font-size:12px;font-weight:300;color:var(--muted);line-height:1.6}
+.insp-badge{flex-shrink:0;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--border2);color:var(--muted);white-space:nowrap}
+.insp-arrow{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color .25s,transform .25s}
+.insp-card:hover .insp-arrow{color:var(--gold);transform:translateX(3px)}
+
+.insp-subtitle{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.insp-subtitle::before{content:'';width:20px;height:1px;background:var(--muted2)}
+
+/* FOOTER */
+.guide-footer{border-top:1px solid var(--border);padding:28px var(--px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.guide-footer p{font-size:11px;color:var(--muted);letter-spacing:.06em}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+.rd1{transition-delay:.08s}.rd2{transition-delay:.16s}.rd3{transition-delay:.24s}
+.rd4{transition-delay:.32s}.rd5{transition-delay:.4s}
+
+/* RESPONSIVE */
+@media(min-width:640px){
+  :root{--px:40px}
+  .top-nav-tag{display:block}
+  .proto-body{grid-template-columns:1fr 1fr}
+  .proto-preview{border-bottom:none;border-right:1px solid var(--border)}
+  .pros-cons{grid-template-columns:1fr 1fr}
+  .advice-grid{grid-template-columns:1fr 1fr}
+  .insp-grid{grid-template-columns:1fr 1fr}
+  .analysis-body{grid-template-columns:1fr 1fr}
+  .analysis-preview{border-bottom:none;border-right:1px solid var(--border)}
+  .guide-footer{flex-direction:row;justify-content:space-between;text-align:left}
+  .proto-features{grid-template-columns:1fr 1fr}
+}
+@media(min-width:1024px){
+  :root{--px:60px}
+  .advice-grid{grid-template-columns:repeat(3,1fr)}
+  .insp-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(min-width:1440px){:root{--px:80px}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="top-nav" id="top-nav">
+  <span class="top-nav-logo">Гид по сайту-визитке</span>
+  <span class="top-nav-tag">CFO · Head of Finance · 2025</span>
+</nav>
+
+<!-- HERO -->
+<header class="guide-hero">
+  <div class="hero-deco-line" aria-hidden="true"></div>
+  <div class="hero-deco-h" aria-hidden="true"></div>
+  <div class="hero-chapter">Справочный гид · 2025</div>
+  <h1>Сайт-визитка<br>для <em>финансиста:</em><br>как сделать правильно</h1>
+  <p class="hero-desc">
+    Разбор единственного русскоязычного CFO-сайта, <strong>готовый прототип в лучших практиках</strong>, советы по дизайну и структуре — и где подсматривать идеи.
+  </p>
+  <div class="hero-toc">
+    <a href="#example"   class="toc-pill"><span class="pill-num">01</span> Реальный пример</a>
+    <a href="#prototype" class="toc-pill"><span class="pill-num">02</span> Эталонный прототип</a>
+    <a href="#design"    class="toc-pill"><span class="pill-num">03</span> Советы по дизайну</a>
+    <a href="#inspo"     class="toc-pill"><span class="pill-num">04</span> Где искать идеи</a>
+  </div>
+</header>
+
+<!-- ══════════════════════════
+     01  РЕАЛЬНЫЙ ПРИМЕР
+══════════════════════════ -->
+<section class="guide-section" id="example">
+  <div class="section-intro">
+    <div class="section-num" aria-hidden="true">01</div>
+    <div class="section-tag">Единственный прямой пример RU</div>
+    <h2 class="section-title">Разбор:<br><em>ananeva.pro</em></h2>
+    <p class="section-lead">Единственный найденный русскоязычный сайт-визитка настоящего финансового директора на аутсорсе. Разбираем что сделано правильно — и что стоит доработать.</p>
+  </div>
+
+  <div class="analysis-hero reveal">
+    <div class="analysis-banner">
+      <div class="analysis-dot"></div>
+      <span class="analysis-banner-text">Прямое попадание — CFO на аутсорсе · Tilda · Русскоязычный</span>
+    </div>
+    <div class="analysis-body">
+      <!-- preview -->
+      <div class="analysis-preview">
+        <div class="browser-bar">
+          <div class="browser-dot r"></div><div class="browser-dot y"></div><div class="browser-dot g"></div>
+          <div class="browser-url">ananeva.pro</div>
+        </div>
+        <div class="preview-scene">
+          <div class="prev-ananeva">
+            <div class="prev-an-nav">
+              <div class="prev-an-logo"></div>
+              <div class="prev-an-navlinks"><span></span><span></span><span></span><span></span></div>
+              <div class="prev-an-cta-btn"><span>Консультация</span></div>
+            </div>
+            <div class="prev-an-hero">
+              <div class="prev-an-text">
+                <div class="prev-an-label"></div>
+                <div class="prev-an-h1"></div>
+                <div class="prev-an-h2"></div>
+                <div class="prev-an-sub"></div>
+                <div class="prev-an-sub2"></div>
+                <div class="prev-an-btn"></div>
+              </div>
+              <div class="prev-an-stats">
+                <div class="prev-an-stat"><div class="num">20+</div><div class="lbl"></div></div>
+                <div class="prev-an-stat"><div class="num">850%</div><div class="lbl"></div></div>
+                <div class="prev-an-stat"><div class="num">×13</div><div class="lbl"></div></div>
+              </div>
+            </div>
+            <div class="prev-an-pains">
+              <div class="prev-an-pain"><div class="pt"></div><div class="ps"></div></div>
+              <div class="prev-an-pain"><div class="pt"></div><div class="ps"></div></div>
+              <div class="prev-an-pain"><div class="pt"></div><div class="ps"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- info -->
+      <div class="analysis-info">
+        <div>
+          <div class="analysis-meta">
+            <span class="badge badge-ru">RU</span>
+            <span class="badge badge-fin">CFO · Финдир</span>
+            <span class="badge badge-tilda">Tilda</span>
+            <span class="badge badge-direct">Outsource CFO</span>
+          </div>
+          <div class="site-name-big" style="margin-top:12px">Наталья Ананьева<br>Финдир на аутсорсе</div>
+          <div class="site-url-big">↗ ananeva.pro</div>
+        </div>
+        <div class="pros-cons">
+          <div class="pc-block">
+            <div class="pc-title good">Что сделано хорошо</div>
+            <ul class="pc-list good">
+              <li><strong>Pain-point блок</strong> «Вам нужен финдир, если…» — посетитель сам узнаёт свою проблему</li>
+              <li><strong>Кейсы с суммами:</strong> «сэкономила 6,3 млн за 1 консультацию», «×13 прибыль за 11 мес» — не слова, а факты</li>
+              <li><strong>Аудио-отзывы + сканы благодарственных писем</strong> — максимальный уровень социального доказательства</li>
+              <li><strong>Прозрачные цены</strong> прямо на сайте (от 30 000 ₽) — нет «напишите нам»</li>
+              <li><strong>Lead magnet</strong> — 13 шаблонов через Telegram-бот, сбор аудитории</li>
+              <li><strong>Конкретные регалии:</strong> Газпром, Полюс, СУЭК — anchor brands моментально повышают доверие</li>
+              <li><strong>FAQ-блок</strong> с 11 вопросами — снимает возражения до звонка</li>
+            </ul>
+          </div>
+          <div class="pc-block">
+            <div class="pc-title fix">Что стоит доработать</div>
+            <ul class="pc-list fix">
+              <li><strong>Дизайн — типовой Tilda-шаблон</strong> без уникального визуального языка. Не запоминается как картинка</li>
+              <li><strong>Hero-экран перегружен:</strong> много текстовых блоков одновременно, нет одного фокуса взгляда</li>
+              <li><strong>Мобильная версия: фото обрезается в скруглённый квадрат</strong> в iOS-стиле — смотрится как аватар приложения, не как образ эксперта. Прямоугольный портрет 3:4 в полный рост добавил бы серьёзности и согласованности с десктопной версией</li>
+              <li><strong>Нет позиционирования ниши</strong> — «для всех» хуже, чем «для ритейла и производства 1–10 млрд»</li>
+              <li><strong>Раздел стоимости</strong> расположен слишком высоко — цена должна идти после «почему именно я»</li>
+              <li><strong>Мобильная версия</strong> — некоторые блоки читаются плохо на телефоне</li>
+              <li><strong>Нет видео-представления</strong> — 60–90 сек ролик «кто я и чем помогаю» резко повышает конверсию</li>
+            </ul>
+          </div>
+        </div>
+        <a href="https://ananeva.pro" target="_blank" rel="noopener" class="analysis-cta">
+          Открыть сайт
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     02  ЭТАЛОННЫЙ ПРОТОТИП
+══════════════════════════ -->
+<section class="guide-section" id="prototype">
+  <div class="section-intro">
+    <div class="section-num" aria-hidden="true">02</div>
+    <div class="section-tag">Готовый прототип</div>
+    <h2 class="section-title">На что ориентироваться:<br><em>лучшие практики</em></h2>
+    <p class="section-lead">Прототип сайта-визитки CFO в лучших практиках — тёмный luxury editorial, серифная типографика, все 7 блоков на месте, полностью адаптивный.</p>
+  </div>
+
+  <div class="proto-block reveal">
+    <div class="proto-header">
+      <span class="proto-badge">Эталон</span>
+      <span class="proto-title">Прототип CFO site-visitka — разработан в этом треде</span>
+    </div>
+    <div class="proto-body">
+      <!-- mini preview -->
+      <div class="proto-preview">
+        <div class="pv-nav">
+          <span class="pv-navlogo">А. Морозов</span>
+          <div class="pv-navlinks"><span></span><span></span><span></span><span></span></div>
+          <div class="pv-cta-nav"></div>
+        </div>
+        <div class="pv-hero">
+          <div class="pv-hero-txt">
+            <div class="pv-label"></div>
+            <div class="pv-h1a"></div>
+            <div class="pv-h1b"></div>
+            <div class="pv-sub"></div>
+            <div class="pv-sub2"></div>
+            <div class="pv-btn"></div>
+          </div>
+          <div class="pv-photo"><span>АМ</span></div>
+        </div>
+        <div class="pv-stats">
+          <div class="pv-stat"><div class="sn"></div><div class="sl"></div></div>
+          <div class="pv-stat"><div class="sn"></div><div class="sl"></div></div>
+          <div class="pv-stat"><div class="sn"></div><div class="sl"></div></div>
+          <div class="pv-stat"><div class="sn"></div><div class="sl"></div></div>
+        </div>
+        <div class="pv-exp-grid">
+          <div class="pv-exp-card"><div class="pv-exp-num"></div><div class="pv-exp-t"></div><div class="pv-exp-s"></div></div>
+          <div class="pv-exp-card"><div class="pv-exp-num"></div><div class="pv-exp-t"></div><div class="pv-exp-s"></div></div>
+          <div class="pv-exp-card"><div class="pv-exp-num"></div><div class="pv-exp-t"></div><div class="pv-exp-s"></div></div>
+        </div>
+      </div>
+      <!-- info -->
+      <div class="proto-info">
+        <div class="proto-name">CFO Визитка — Dark Luxury Edition</div>
+        <p class="proto-desc">Полноценный одностраничник с правильной структурой, тёмным premium-дизайном и анимациями. Открывается в браузере, адаптирован под телефон, планшет и широкий экран. Вставьте своё имя, фото и данные — и готово.</p>
+        <div class="proto-features">
+          <div class="proto-feat"><strong>Тёмная editorial-тема</strong> с золотым акцентом — серьёзность и премиальность</div>
+          <div class="proto-feat"><strong>Cormorant Garamond</strong> — элегантная серифная типографика для заголовков</div>
+          <div class="proto-feat"><strong>7 блоков</strong> в правильном порядке убеждения</div>
+          <div class="proto-feat"><strong>Scroll reveal анимации</strong> и hover-эффекты на всех элементах</div>
+          <div class="proto-feat"><strong>Бургер-меню</strong> + sticky CTA на мобильном</div>
+          <div class="proto-feat"><strong>Форма обратной связи</strong> с подтверждением отправки</div>
+        </div>
+        <a href="#" onclick="openProto(event)" class="proto-cta">
+          Открыть прототип
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     03  СОВЕТЫ ПО ДИЗАЙНУ
+══════════════════════════ -->
+<section class="guide-section" id="design">
+  <div class="section-intro">
+    <div class="section-num" aria-hidden="true">03</div>
+    <div class="section-tag">Дизайн и структура</div>
+    <h2 class="section-title">Как сделать<br><em>правильно</em></h2>
+    <p class="section-lead">Конкретные советы: порядок блоков, цвета, типографика, что работает в финансовой нише — и чего избегать.</p>
+  </div>
+
+  <!-- Block order -->
+  <div style="margin-bottom:56px" class="reveal">
+    <div class="insp-subtitle">Порядок блоков и логика убеждения</div>
+    <div class="block-order">
+      <div class="bo-row">
+        <span class="bo-num">01</span>
+        <span class="bo-name">Hero — Кто я и что делаю</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:100%"></div></div>
+        <span class="bo-why">Фокус: 1 предложение позиционирования</span>
+      </div>
+      <div class="bo-row">
+        <span class="bo-num">02</span>
+        <span class="bo-name">Боли клиента — «Вам нужен CFO, если…»</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:90%"></div></div>
+        <span class="bo-why">Клиент узнаёт себя → остаётся</span>
+      </div>
+      <div class="bo-row">
+        <span class="bo-num">03</span>
+        <span class="bo-name">Статистика — Числа доверия</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:75%"></div></div>
+        <span class="bo-why">Быстрое доверие без чтения</span>
+      </div>
+      <div class="bo-row">
+        <span class="bo-num">04</span>
+        <span class="bo-name">Экспертиза — Направления работы</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:80%"></div></div>
+        <span class="bo-why">Уточняет, чем конкретно помогу</span>
+      </div>
+      <div class="bo-row">
+        <span class="bo-num">05</span>
+        <span class="bo-name">Кейсы — Задача → Действие → Результат₽</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:100%"></div></div>
+        <span class="bo-why">Главный блок убеждения</span>
+      </div>
+      <div class="bo-row">
+        <span class="bo-num">06</span>
+        <span class="bo-name">О себе + Образование</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:65%"></div></div>
+        <span class="bo-why">После кейсов — уже доверяют</span>
+      </div>
+      <div class="bo-row">
+        <span class="bo-num">07</span>
+        <span class="bo-name">Отзывы — Слова клиентов</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:85%"></div></div>
+        <span class="bo-why">Финальное подтверждение</span>
+      </div>
+      <div class="bo-row">
+        <span class="bo-num">08</span>
+        <span class="bo-name">Стоимость (опционально)</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:55%"></div></div>
+        <span class="bo-why">После ценности — не в начале</span>
+      </div>
+      <div class="bo-row">
+        <span class="bo-num">09</span>
+        <span class="bo-name">Контакт — Один шаг до звонка</span>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:70%"></div></div>
+        <span class="bo-why">Минимум полей, один CTA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advice cards -->
+  <div class="advice-grid">
+
+    <div class="advice-card reveal">
+      <div class="advice-num">01</div>
+      <div class="advice-title">Цветовая палитра: доверие + премиальность</div>
+      <div class="advice-body">
+        В финансах работают два направления: <em>тёмная editorial-тема</em> (navy/black + gold/cream) и <em>чистый минимализм</em> (white + dark navy + один акцент). Оба транслируют компетентность.
+        <strong>Избегайте:</strong> яркие градиенты, кислотные акценты, разноцветные кнопки — это работает для стартапов, не для CFO.
+      </div>
+      <div class="palette-row">
+        <div class="swatch" style="background:#09090B;color:#6B6860;border:1px solid #1C1C21">Dark</div>
+        <div class="swatch" style="background:#B8965A;color:#09090B">Gold</div>
+        <div class="swatch" style="background:#EDE9E2;color:#09090B">Cream</div>
+        <div class="swatch" style="background:#0A2B5E;color:white">Navy</div>
+        <div class="swatch" style="background:#FFFFFF;color:#0A2B5E;border:1px solid #E0E8F0">White</div>
+        <div class="swatch" style="background:#2A7A5A;color:white">Green</div>
+      </div>
+    </div>
+
+    <div class="advice-card reveal rd1">
+      <div class="advice-num">02</div>
+      <div class="advice-title">Типографика: серифы для авторитета</div>
+      <div class="advice-body">
+        Серифные шрифты в заголовках (Cormorant, Playfair, EB Garamond) визуально передают <em>опыт и экспертизу</em> — как у The Economist или Financial Times. Тело — чистый sans-serif (Manrope, Inter, DM Sans).
+        <strong>Размеры на десктопе:</strong> Hero-заголовок 80–110px, секции 40–54px, текст 15–16px.
+      </div>
+      <div class="advice-tags">
+        <span class="advice-tag">Cormorant Garamond</span>
+        <span class="advice-tag">Playfair Display</span>
+        <span class="advice-tag">EB Garamond</span>
+        <span class="advice-tag">Libre Baskerville</span>
+      </div>
+    </div>
+
+    <div class="advice-card reveal rd2">
+      <div class="advice-num">03</div>
+      <div class="advice-title">Hero-экран: 3 секунды решают всё</div>
+      <div class="advice-body">
+        <strong>Формула первого экрана:</strong> Имя + должность → одна строка «кому и чем помогаю» → профессиональное фото → кнопка CTA. Живое фото конвертирует в 2–3× лучше иллюстрации или заглушки. Никакого текста на 5 строк — только суть.
+      </div>
+      <div class="advice-tags">
+        <span class="advice-tag">1 CTA</span>
+        <span class="advice-tag">Живое фото</span>
+        <span class="advice-tag">Позиционирование в 1 строке</span>
+      </div>
+    </div>
+
+    <div class="advice-card reveal rd3">
+      <div class="advice-num">04</div>
+      <div class="advice-title">Кейсы: формат который убеждает</div>
+      <div class="advice-body">
+        Каждый кейс = <em>Контекст (2 строки) → Что сделал (1–2 действия) → Результат в цифре.</em>
+        <strong>Плохо:</strong> «Помог вырасти». <strong>Хорошо:</strong> «Сократил цикл закрытия с 18 до 4 дней, −78%». Минимум 3 кейса, максимум 6. Скрыть за «Читать кейс» если длинный.
+      </div>
+      <div class="advice-tags">
+        <span class="advice-tag">Цифра результата</span>
+        <span class="advice-tag">Название отрасли</span>
+        <span class="advice-tag">Конкретное действие</span>
+      </div>
+    </div>
+
+    <div class="advice-card reveal rd4">
+      <div class="advice-num">05</div>
+      <div class="advice-title">Социальные доказательства: иерархия</div>
+      <div class="advice-body">
+        От слабого к сильному: текстовый отзыв → отзыв с именем и должностью → <em>видео-отзыв → аудио-отзыв → скан благодарственного письма.</em> Логотипы клиентов (особенно крупные бренды) работают как anchor — размещайте их сразу под hero или после кейсов.
+      </div>
+      <div class="advice-tags">
+        <span class="advice-tag">Имя + должность обязательны</span>
+        <span class="advice-tag">Логотипы клиентов</span>
+        <span class="advice-tag">Аудио/видео</span>
+      </div>
+    </div>
+
+    <div class="advice-card reveal rd5">
+      <div class="advice-num">06</div>
+      <div class="advice-title">Мобильный опыт: не забудьте главное</div>
+      <div class="advice-body">
+        <strong>60%+ трафика — телефон.</strong> Проверьте: все кнопки ≥44px, текст читается без зума, формы удобны для тапа. На мобильном оставьте <em>sticky кнопку</em> «Написать» — она исчезает когда доходят до формы. Hero на мобильном — фото сверху, текст снизу.
+      </div>
+      <div class="advice-tags">
+        <span class="advice-tag">Sticky CTA на мобиле</span>
+        <span class="advice-tag">Touch targets 44px</span>
+        <span class="advice-tag">Бургер-меню</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- What to avoid -->
+  <div class="reveal" style="border:1px solid var(--border2);padding:28px">
+    <div class="insp-subtitle" style="margin-bottom:20px">Чего избегать — топ ошибок CFO-сайтов</div>
+    <div style="display:grid;grid-template-columns:1fr;gap:8px">
+      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">«Обо мне» вместо «Чем я помогу вам»</strong> — сайт должен говорить на языке клиента, не вашего резюме</span></div>
+      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Список регалий без контекста</strong> — «MBA, ACCA, CFA» без объяснения что это даёт клиенту</span></div>
+      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Несколько CTA-кнопок</strong> — одна кнопка, одно действие; «позвоните / напишите / скачайте / запишитесь» = ноль конверсии</span></div>
+      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Стоковые фото</strong> — руки с деньгами, графики роста, люди в костюмах из фотобанка = мгновенный сигнал недоверия</span></div>
+      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Кейсы без цифр</strong> — «помогли вырасти» не работает; нужна конкретная метрика: %, ₽, дни, разы</span></div>
+      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Форма с 8+ полями</strong> — имя, email, задача — этого достаточно; остальное узнаете на звонке</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     04  ГДЕ ИСКАТЬ ИДЕИ
+══════════════════════════ -->
+<section class="guide-section" id="inspo">
+  <div class="section-intro">
+    <div class="section-num" aria-hidden="true">04</div>
+    <div class="section-tag">Вдохновение</div>
+    <h2 class="section-title">Где искать<br><em>идеи для сайта</em></h2>
+    <p class="section-lead">Не просто красивые сайты, а те где можно подсмотреть <strong style="color:var(--text)">первый экран, карточки, форму, подачу преимуществ и структуру лендинга.</strong></p>
+  </div>
+
+  <!-- Основные (из скриншота) -->
+  <div class="insp-subtitle reveal">Основные галереи и платформы</div>
+  <div class="insp-grid reveal" style="margin-bottom:40px">
+
+    <a href="https://tilda.cc/ru/examples/" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">T̈</div>
+      <div class="insp-info">
+        <div class="insp-name">Tilda — Примеры сайтов</div>
+        <div class="insp-meta">Галерея лучших сайтов на Tilda. Фильтр «Личный» → сразу видите визитки экспертов. Все воспроизводимо на той же платформе</div>
+      </div>
+      <span class="insp-badge">RU · Tilda</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://www.framer.com/templates/" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Fr</div>
+      <div class="insp-info">
+        <div class="insp-name">Framer — Templates & Sites</div>
+        <div class="insp-meta">Шаблоны портфолио и personal brand. Живые анимации, современный дизайн. Фильтр: Portfolio / Personal</div>
+      </div>
+      <span class="insp-badge">EN · Framer</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://webflow.com/made-in-webflow/portfolio" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">W</div>
+      <div class="insp-info">
+        <div class="insp-name">Webflow — Made in Webflow</div>
+        <div class="insp-meta">Тысячи реальных сайтов с фильтром по категории. CFO/Finance: webflow.com/made-in-webflow/cfo — живые примеры</div>
+      </div>
+      <span class="insp-badge">EN · Webflow</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://land-book.com" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Lb</div>
+      <div class="insp-info">
+        <div class="insp-name">Land-book</div>
+        <div class="insp-meta">Галерея лендингов с фильтром по типу блока: hero, pricing, features, testimonials. Идеально для изучения структуры</div>
+      </div>
+      <span class="insp-badge">EN · Лендинги</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://onepagelove.com" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">♡</div>
+      <div class="insp-info">
+        <div class="insp-name">One Page Love</div>
+        <div class="insp-meta">Специализируется на одностраничных сайтах — идеально для формата визитки. Фильтр «Professional» даёт деловые примеры</div>
+      </div>
+      <span class="insp-badge">EN · One-pager</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://www.awwwards.com/websites/portfolio/" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Aw</div>
+      <div class="insp-info">
+        <div class="insp-name">Awwwards — Portfolio & Personal</div>
+        <div class="insp-meta">Высшая планка дизайна в мире. Для понимания трендов и «потолка» качества. Фильтр: Portfolio / Personal Branding</div>
+      </div>
+      <span class="insp-badge">EN · Топ дизайн</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://www.cosmos.so/explore" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">◎</div>
+      <div class="insp-info">
+        <div class="insp-name">Cosmos.so</div>
+        <div class="insp-meta">Визуальная доска вдохновения от дизайнеров. Поиск «personal website» или «finance landing» — нестандартные идеи для UI-элементов</div>
+      </div>
+      <span class="insp-badge">EN · Mood board</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://pinterest.com/search/pins/?q=personal+website+design+finance" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">P</div>
+      <div class="insp-info">
+        <div class="insp-name">Pinterest — Personal Website Design</div>
+        <div class="insp-meta">Огромная база скриншотов. Запросы: «personal website CFO», «finance landing page design», «executive personal brand site»</div>
+      </div>
+      <span class="insp-badge">EN/RU · Pinterest</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+  </div>
+
+  <!-- Дополнительные — для CFO-специфики -->
+  <div class="insp-subtitle reveal">Дополнительно — первый экран, карточки, формы, структура</div>
+  <div class="insp-grid reveal">
+
+    <a href="https://lapa.ninja" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">La</div>
+      <div class="insp-info">
+        <div class="insp-name">Lapa Ninja</div>
+        <div class="insp-meta">Подборка по типу блока: hero, pricing, testimonials, CTA. Идеально чтобы изучить как конкретный блок делают лучшие</div>
+      </div>
+      <span class="insp-badge">EN · По блокам</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://godly.website" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Gd</div>
+      <div class="insp-info">
+        <div class="insp-name">Godly Website</div>
+        <div class="insp-meta">Кураторская галерея лучших сайтов с акцентом на анимации и интерактив. Раздел Portfolio — сразу видно современные тренды</div>
+      </div>
+      <span class="insp-badge">EN · Анимации</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://www.pages.xyz" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Pg</div>
+      <div class="insp-info">
+        <div class="insp-name">Pages.xyz</div>
+        <div class="insp-meta">Галерея лендингов категорий Consulting, Finance, Professional Services — максимально близко к вашей нише</div>
+      </div>
+      <span class="insp-badge">EN · Consulting</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://www.siteinspire.com" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Si</div>
+      <div class="insp-info">
+        <div class="insp-name">Siteinspire</div>
+        <div class="insp-meta">Классика. Фильтр по стилю: Minimal, Dark, Typography — три направления релевантны для финансового директора</div>
+      </div>
+      <span class="insp-badge">EN · Стиль</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://www.cfosecrets.io" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">CS</div>
+      <div class="insp-info">
+        <div class="insp-name">CFO Secrets — личный бренд CFO</div>
+        <div class="insp-meta">«Secret CFO» с $1 млрд+ P&L опытом. Чёрный минимализм, newsletter-первый подход, 50K+ подписчиков. Альтернативная модель личного бренда</div>
+      </div>
+      <span class="insp-badge">EN · CFO brand</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://www.pyllar.be" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Py</div>
+      <div class="insp-info">
+        <div class="insp-name">Pyllar.be — Fractional CFO дуэт</div>
+        <div class="insp-meta">Два опытных CFO, Webflow, тёмный дизайн. 60+ компаний, 93% успешных заявок на финансирование. Хорошая структура кейсов</div>
+      </div>
+      <span class="insp-badge">EN/NL · CFO</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://dprofile.ru" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Dp</div>
+      <div class="insp-info">
+        <div class="insp-name">Dprofile.ru</div>
+        <div class="insp-meta">Русскоязычные дизайнеры и студии. Поиск «личный сайт» или «визитка эксперта» — найдёте и дизайнера для реализации</div>
+      </div>
+      <span class="insp-badge">RU · Дизайнеры</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+    <a href="https://www.behance.net/search/projects?search=personal+website+finance+executive" target="_blank" rel="noopener" class="insp-card">
+      <div class="insp-icon">Be</div>
+      <div class="insp-info">
+        <div class="insp-name">Behance — Finance Executive Sites</div>
+        <div class="insp-meta">Запрос «personal website finance executive» или «CFO landing page» — дизайн-концепции, в т.ч. незапущенные, часто самые смелые</div>
+      </div>
+      <span class="insp-badge">EN/RU · Концепты</span>
+      <div class="insp-arrow"><svg width="14" height="14" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+
+  </div>
+</section>
+
+<footer class="guide-footer">
+  <p>Гид по сайту-визитке для финансовых руководителей · 2025</p>
+  <p style="color:var(--gold-dim)">CFO · Head of Finance · Head of Business Planning</p>
+</footer>
+
+<script>
+const nav = document.getElementById('top-nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+<!-- ── PROTOTYPE MODAL ── -->
+<div id="proto-modal" style="
+  display:none; position:fixed; inset:0; z-index:9000;
+  background:#000; flex-direction:column;
+">
+  <div style="
+    flex-shrink:0; height:48px; background:#09090B;
+    border-bottom:1px solid #1C1C21;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 24px;
+  ">
+    <span style="font-family:'Manrope',sans-serif; font-size:11px; font-weight:600;
+      letter-spacing:.18em; text-transform:uppercase; color:#6B6860;">
+      Прототип — Александр Морозов CFO
+    </span>
+    <button onclick="closeProto()" style="
+      background:none; border:1px solid #1C1C21; color:#6B6860;
+      width:36px; height:36px; cursor:pointer; font-size:18px; line-height:1;
+      display:flex; align-items:center; justify-content:center;
+      transition:border-color .2s, color .2s;
+    " onmouseover="this.style.borderColor='#B8965A';this.style.color='#B8965A'"
+       onmouseout="this.style.borderColor='#1C1C21';this.style.color='#6B6860'"
+       aria-label="Закрыть">✕</button>
+  </div>
+  <iframe
+    id="proto-frame"
+    srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ru&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Александр Морозов — CFO&lt;/title&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Manrope:wght@300;400;500;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+/* ════════════════════════════════════════════════
+   BASE RESET &amp; VARIABLES
+════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #09090B;
+  --surface: #111115;
+  --border:  #1C1C21;
+  --gold:    #B8965A;
+  --gold-lt: #D4AF78;
+  --text:    #EDE9E2;
+  --muted:   #6B6860;
+  --muted2:  #3A3835;
+  --serif:   &#x27;Cormorant Garamond&#x27;, Georgia, serif;
+  --sans:    &#x27;Manrope&#x27;, system-ui, sans-serif;
+
+  /* Spacing scale */
+  --px:    20px;   /* horizontal padding mobile */
+  --sec:   64px;   /* section padding mobile */
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain */
+body::before {
+  content: &#x27;&#x27;;
+  position: fixed; inset: 0;
+  background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; width=&#x27;300&#x27; height=&#x27;300&#x27;%3E%3Cfilter id=&#x27;n&#x27;%3E%3CfeTurbulence type=&#x27;fractalNoise&#x27; baseFrequency=&#x27;0.75&#x27; numOctaves=&#x27;4&#x27; stitchTiles=&#x27;stitch&#x27;/%3E%3C/filter%3E%3Crect width=&#x27;300&#x27; height=&#x27;300&#x27; filter=&#x27;url(%23n)&#x27; opacity=&#x27;0.04&#x27;/%3E%3C/svg%3E&quot;);
+  pointer-events: none; z-index: 2; opacity: 0.45;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+/* ════════════════════════════════════════════════
+   NAV  (mobile-first)
+════════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px var(--px);
+  background: linear-gradient(to bottom, rgba(9,9,11,.97) 0%, rgba(9,9,11,0) 100%);
+  transition: background .3s, border-color .3s;
+}
+nav.scrolled {
+  background: rgba(9,9,11,.97);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-name {
+  font-family: var(--serif); font-size: 17px; font-weight: 300;
+  letter-spacing: .08em; color: var(--text);
+  text-decoration: none;
+}
+
+/* Desktop links — hidden on mobile */
+.nav-links {
+  display: none;
+  gap: 32px; list-style: none;
+}
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+  text-decoration: none; transition: color .25s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  display: none;
+  font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--bg); background: var(--gold);
+  padding: 10px 22px; text-decoration: none; transition: background .25s;
+}
+.nav-cta:hover { background: var(--gold-lt); }
+
+/* Hamburger */
+.nav-burger {
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 5px; width: 44px; height: 44px; padding: 10px;
+  background: none; border: none; cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--text); transition: transform .3s, opacity .3s;
+  transform-origin: center;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile drawer */
+.nav-drawer {
+  position: fixed; inset: 0; z-index: 190;
+  background: rgba(9,9,11,.98);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 40px;
+  transform: translateX(100%);
+  transition: transform .4s cubic-bezier(.77,0,.18,1);
+  overflow: hidden;
+  visibility: hidden;
+}
+.nav-drawer.open { visibility: visible; }
+.nav-drawer.open { transform: none; }
+.nav-drawer a {
+  font-family: var(--serif); font-size: 32px; font-weight: 300;
+  letter-spacing: .04em; color: var(--text);
+  text-decoration: none; transition: color .2s;
+}
+.nav-drawer a:hover, .nav-drawer a:active { color: var(--gold); }
+.nav-drawer .drawer-cta {
+  margin-top: 16px; font-family: var(--sans);
+  font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--bg); background: var(--gold);
+  padding: 14px 36px; text-decoration: none;
+}
+
+/* ════════════════════════════════════════════════
+   HERO  (mobile)
+════════════════════════════════════════════════ */
+#hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  padding: 100px var(--px) 80px;
+  position: relative; overflow: hidden;
+}
+
+/* Decorative lines */
+.hero-bg-line  { display: none; }
+.hero-bg-line2 { display: none; }
+
+/* Mobile: photo strip at top */
+.hero-photo-col {
+  order: -1;
+  display: flex; justify-content: center;
+  margin-bottom: 40px;
+}
+.hero-photo-wrap { position: relative; width: 160px; }
+.hero-photo-frame {
+  width: 160px; height: 200px;
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.hero-photo-initials {
+  font-family: var(--serif); font-size: 52px; font-weight: 300;
+  color: var(--muted2); letter-spacing: -.03em; user-select: none;
+}
+.hero-photo-hint {
+  position: absolute; bottom: 10px; left: 0; right: 0;
+  text-align: center; font-size: 9px; letter-spacing: .13em;
+  color: var(--muted); text-transform: uppercase;
+}
+.hero-photo-deco {
+  position: absolute; top: -12px; right: -12px;
+  width: 40px; height: 40px;
+  border: 1px solid var(--gold); opacity: .4;
+}
+.hero-photo-tag {
+  display: none; /* shown on tablet+ */
+}
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 28px;
+}
+.hero-label::before {
+  content: &#x27;&#x27;; display: block; width: 24px; height: 1px; background: var(--gold);
+}
+
+.hero-name {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(52px, 14vw, 110px);
+  line-height: .92; letter-spacing: -.02em;
+  color: var(--text); margin-bottom: 32px;
+}
+.hero-name em { font-style: italic; color: var(--gold); }
+
+.hero-description {
+  font-size: 15px; font-weight: 300; line-height: 1.85;
+  color: #9B9790; margin-bottom: 40px;
+}
+.hero-description strong { color: var(--text); font-weight: 500; }
+
+.hero-actions {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 16px;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 15px 32px; background: var(--gold); color: var(--bg);
+  font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; transition: background .25s;
+  min-height: 48px;
+}
+.btn-primary:hover { background: var(--gold-lt); }
+.btn-primary svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.btn-ghost {
+  font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  border-bottom: 1px solid var(--muted2); padding-bottom: 2px;
+  transition: color .25s, border-color .25s;
+  min-height: 44px; display: inline-flex; align-items: flex-end;
+}
+.btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+.scroll-indicator { display: none; }
+
+/* ════════════════════════════════════════════════
+   STATS  (mobile: 2×2)
+════════════════════════════════════════════════ */
+#stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border);
+}
+.stat-item {
+  padding: 36px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.stat-item:nth-child(even) { border-right: none; }
+.stat-item:nth-child(n+3) { border-bottom: none; }
+.stat-item::after {
+  content: &#x27;&#x27;; position: absolute; bottom: 0; left: 24px;
+  width: 0; height: 2px; background: var(--gold);
+  transition: width .6s ease;
+}
+.stat-item:hover::after { width: calc(100% - 48px); }
+
+.stat-number {
+  font-family: var(--serif); font-size: clamp(36px, 8vw, 56px);
+  font-weight: 300; line-height: 1; color: var(--text);
+  letter-spacing: -.02em; margin-bottom: 6px;
+}
+.stat-number em { font-style: italic; color: var(--gold); font-size: .58em; }
+.stat-label {
+  font-size: 10px; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ════════════════════════════════════════════════
+   SECTION COMMON
+════════════════════════════════════════════════ */
+section { padding: var(--sec) var(--px); position: relative; z-index: 1; }
+
+.section-header {
+  display: flex; flex-direction: column; align-items: flex-start;
+  margin-bottom: 48px;
+}
+.section-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-tag::before { content: &#x27;&#x27;; width: 20px; height: 1px; background: var(--gold); display: block; }
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 8vw, 54px);
+  font-weight: 300; line-height: 1.08; letter-spacing: -.01em;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+/* ════════════════════════════════════════════════
+   EXPERTISE  (mobile: 1 col)
+════════════════════════════════════════════════ */
+#expertise {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.expertise-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: 1px; background: var(--border);
+}
+.exp-card {
+  background: var(--surface); padding: 36px 28px;
+  transition: background .3s; position: relative; overflow: hidden;
+}
+.exp-card:active { background: #15151A; }
+.exp-card::before {
+  content: &#x27;&#x27;; position: absolute; top: 0; left: 0;
+  width: 2px; height: 0; background: var(--gold);
+  transition: height .4s ease;
+}
+.exp-card:hover::before { height: 100%; }
+.exp-card:hover { background: #15151A; }
+
+.exp-num {
+  font-family: var(--serif); font-size: 12px; font-weight: 300;
+  color: var(--muted2); margin-bottom: 18px; letter-spacing: .06em;
+}
+.exp-title {
+  font-family: var(--serif); font-size: 20px; font-weight: 400;
+  color: var(--text); margin-bottom: 12px; line-height: 1.3;
+}
+.exp-text {
+  font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.8;
+}
+.exp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.exp-tag {
+  font-size: 9px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--muted2); padding: 4px 9px;
+}
+
+/* ════════════════════════════════════════════════
+   CASES  (mobile: stacked)
+════════════════════════════════════════════════ */
+#cases { border-bottom: 1px solid var(--border); }
+.cases-list { display: flex; flex-direction: column; }
+
+.case-item {
+  display: grid; grid-template-columns: 32px 1fr;
+  gap: 20px; padding: 36px 0;
+  border-top: 1px solid var(--border);
+  transition: padding .2s;
+}
+.case-result { display: none; } /* shown on wider screens */
+
+.case-num {
+  font-family: var(--serif); font-size: 12px;
+  color: var(--muted2); padding-top: 2px;
+}
+.case-company {
+  font-size: 10px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+.case-title {
+  font-family: var(--serif); font-size: 20px; font-weight: 400;
+  line-height: 1.25; color: var(--text); margin-bottom: 14px;
+}
+.case-body {
+  font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.8;
+}
+.case-body strong { color: var(--text); font-weight: 500; }
+
+/* ════════════════════════════════════════════════
+   ABOUT  (mobile: stacked)
+════════════════════════════════════════════════ */
+#about { border-bottom: 1px solid var(--border); }
+.about-left .section-tag { margin-bottom: 12px; }
+.about-title { margin-bottom: 28px; }
+.about-text {
+  font-size: 15px; font-weight: 300; color: #9B9790; line-height: 1.9;
+}
+.about-text p + p { margin-top: 20px; }
+.about-text strong { color: var(--text); font-weight: 500; }
+
+.about-right { margin-top: 48px; }
+.creds-list { list-style: none; border-top: 1px solid var(--border); }
+.creds-list li {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+  gap: 16px;
+}
+.cred-title { font-weight: 500; color: var(--text); font-size: 13px; }
+.cred-meta { font-weight: 300; color: var(--muted); font-size: 11px; margin-top: 2px; }
+.cred-badge {
+  font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--gold); padding: 3px 8px;
+  white-space: nowrap; flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════
+   TESTIMONIALS  (mobile: 1 col)
+════════════════════════════════════════════════ */
+#testimonials {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.testi-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: 1px; background: var(--border);
+}
+.testi-card { background: var(--surface); padding: 40px 28px; }
+.testi-quote {
+  font-family: var(--serif); font-size: 56px; font-weight: 300;
+  color: var(--gold); line-height: .5; margin-bottom: 20px; opacity: .6;
+}
+.testi-text {
+  font-size: 14px; font-weight: 300; color: #9B9790;
+  line-height: 1.85; font-style: italic; margin-bottom: 28px;
+}
+.testi-author { border-top: 1px solid var(--border); padding-top: 16px; }
+.testi-name { font-weight: 500; font-size: 13px; color: var(--text); }
+.testi-role { font-size: 11px; color: var(--muted); font-weight: 300; margin-top: 2px; }
+
+/* ════════════════════════════════════════════════
+   CONTACT  (mobile: stacked)
+════════════════════════════════════════════════ */
+#contact { padding-bottom: 100px; /* room for sticky CTA */ }
+
+.contact-left { margin-bottom: 48px; }
+.contact-lead {
+  font-family: var(--serif);
+  font-size: clamp(32px, 9vw, 56px);
+  font-weight: 300; line-height: 1.1; margin-bottom: 24px;
+}
+.contact-lead em { font-style: italic; color: var(--gold); }
+.contact-sub {
+  font-size: 14px; font-weight: 300; color: var(--muted);
+  line-height: 1.8; margin-bottom: 36px;
+}
+.contact-links { display: flex; flex-direction: column; }
+.contact-link-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; border-bottom: 1px solid var(--border);
+  text-decoration: none; color: var(--text); min-height: 76px;
+  transition: padding-left .3s ease;
+}
+.contact-link-item:first-child { border-top: 1px solid var(--border); }
+.contact-link-item:hover { padding-left: 10px; }
+.clink-body { display: flex; flex-direction: column; gap: 5px; }
+.clink-meta {
+  font-size: 10px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--muted); font-weight: 600;
+}
+.clink-label { font-size: 15px; font-weight: 400; color: var(--text); transition: color .25s; }
+.contact-link-item:hover .clink-label { color: var(--gold); }
+.clink-arrow {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .25s, background .25s;
+}
+.clink-arrow svg { width: 14px; height: 14px; stroke: var(--muted); transition: stroke .25s; }
+.contact-link-item:hover .clink-arrow { border-color: var(--gold); background: var(--gold); }
+.contact-link-item:hover .clink-arrow svg { stroke: var(--bg); }
+
+.contact-form-wrap .section-tag { margin-bottom: 28px; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+  font-size: 10px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--muted);
+}
+.form-group input,
+.form-group textarea {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); padding: 14px 16px;
+  font-family: var(--sans); font-size: 15px; font-weight: 300;
+  outline: none; transition: border-color .25s; resize: vertical;
+  -webkit-appearance: none; border-radius: 0;
+  min-height: 50px;
+}
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--gold); }
+.form-group textarea { min-height: 110px; }
+
+.form-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+.form-submit {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 16px 32px; background: var(--gold); color: var(--bg);
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  border: none; cursor: pointer; transition: background .25s;
+  min-height: 52px; align-self: flex-start;
+  -webkit-appearance: none;
+}
+.form-submit:hover, .form-submit:active { background: var(--gold-lt); }
+
+/* ════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px var(--px);
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; text-align: center;
+  position: relative; z-index: 1;
+}
+.footer-copy { font-size: 11px; color: var(--muted); letter-spacing: .06em; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.footer-links a {
+  font-size: 11px; color: var(--muted); text-decoration: none;
+  letter-spacing: .08em; transition: color .25s; min-height: 36px;
+  display: flex; align-items: center;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ════════════════════════════════════════════════
+   STICKY BOTTOM CTA  (mobile only)
+════════════════════════════════════════════════ */
+.sticky-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
+  background: var(--gold); color: var(--bg);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 18px; font-size: 12px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; min-height: 58px;
+  transform: translateY(0); transition: transform .3s;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.sticky-cta svg { width: 16px; height: 16px; }
+.sticky-cta.hidden { transform: translateY(100%); }
+
+/* ════════════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+
+/* ════════════════════════════════════════════════
+   TABLET  ≥ 640px
+════════════════════════════════════════════════ */
+@media (min-width: 640px) {
+  :root { --px: 40px; --sec: 80px; }
+
+  /* Nav */
+  .nav-burger { display: none; }
+  .nav-drawer { display: none !important; }
+  .nav-links { display: flex; }
+  .nav-cta { display: block; }
+  #main-nav { padding: 22px var(--px); }
+
+  /* Hero */
+  #hero { padding: 130px var(--px) 80px; }
+  .hero-photo-col { display: none; } /* replaced by side-by-side on desktop */
+  .hero-name { font-size: clamp(64px, 10vw, 110px); }
+  .hero-actions { flex-direction: row; align-items: center; gap: 28px; }
+  .scroll-indicator {
+    display: flex; position: absolute; bottom: 28px; left: var(--px);
+    align-items: center; gap: 12px;
+    font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+  }
+  .scroll-line { width: 36px; height: 1px; background: var(--muted2); }
+
+  /* Stats */
+  #stats { grid-template-columns: repeat(4, 1fr); }
+  .stat-item { padding: 48px 32px; border-bottom: none; }
+  .stat-item:nth-child(even) { border-right: 1px solid var(--border); }
+  .stat-item:last-child { border-right: none; }
+  .stat-item::after { left: 32px; }
+  .stat-item:hover::after { width: calc(100% - 64px); }
+
+  /* Expertise */
+  .expertise-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Cases */
+  .case-item { grid-template-columns: 48px 1fr 1fr; gap: 28px; }
+  .case-result {
+    display: block; text-align: right; padding-top: 4px;
+  }
+  .case-result-num {
+    font-family: var(--serif); font-size: 32px; font-weight: 300;
+    line-height: 1; color: var(--gold);
+  }
+  .case-result-label {
+    font-size: 10px; font-weight: 500; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted); margin-top: 4px;
+  }
+
+  /* About */
+  #about { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .about-right { margin-top: 0; }
+
+  /* Testimonials */
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Contact */
+  #contact { display: grid; grid-template-columns: 380px 1fr; gap: 60px; padding-bottom: var(--sec); }
+  .contact-left { margin-bottom: 0; }
+  .form-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Footer */
+  footer { flex-direction: row; justify-content: space-between; text-align: left; }
+
+  /* Hide sticky CTA */
+  .sticky-cta { display: none; }
+}
+
+/* ════════════════════════════════════════════════
+   DESKTOP  ≥ 1024px
+════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  :root { --px: 60px; --sec: 100px; }
+
+  #main-nav { padding: 24px var(--px); }
+
+  /* Hero: two-column side-by-side */
+  #hero {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    grid-template-rows: 1fr auto;
+    align-items: end;
+    padding: 140px var(--px) 80px;
+    min-height: 100vh;
+  }
+  .hero-bg-line {
+    display: block; position: absolute;
+    top: 0; bottom: 0; right: 360px;
+    width: 1px; background: var(--border);
+  }
+  .hero-bg-line2 {
+    display: block; position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px; background: var(--border);
+  }
+  .hero-content { padding-bottom: 60px; }
+  .hero-photo-col {
+    order: 0; display: flex;
+    align-items: flex-end; justify-content: center;
+    padding-bottom: 0;
+  }
+  .hero-photo-wrap { position: relative; width: 300px; }
+  .hero-photo-frame { width: 300px; height: 400px; }
+  .hero-photo-initials { font-size: 80px; }
+  .hero-photo-deco { width: 64px; height: 64px; top: -16px; right: -16px; }
+  .hero-photo-tag {
+    display: block; position: absolute; bottom: -1px; left: -32px;
+    background: var(--bg); border: 1px solid var(--border);
+    padding: 14px 18px; font-size: 11px; font-weight: 500;
+    letter-spacing: .08em; white-space: nowrap;
+  }
+  .hero-photo-tag span { color: var(--gold); }
+
+  /* Stats */
+  .stat-item { padding: 60px 40px; }
+  .stat-item::after { left: 40px; }
+  .stat-item:hover::after { width: calc(100% - 80px); }
+
+  /* Expertise */
+  .expertise-grid { grid-template-columns: repeat(3, 1fr); }
+  .exp-card { padding: 48px 40px; }
+
+  /* Cases */
+  .case-item { grid-template-columns: 80px 1fr 1fr 120px; gap: 40px; }
+  .case-item:hover {
+    padding-left: 16px; padding-right: 16px;
+    margin-left: -16px; margin-right: -16px;
+    background: #0E0E12;
+  }
+  .case-title { font-size: 23px; }
+
+  /* About */
+  #about { gap: 80px; }
+  .section-header { flex-direction: row; justify-content: space-between; margin-bottom: 72px; }
+
+  /* Testimonials */
+  .testi-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Contact */
+  #contact { gap: 80px; }
+}
+
+/* ════════════════════════════════════════════════
+   WIDE  ≥ 1440px
+════════════════════════════════════════════════ */
+@media (min-width: 1440px) {
+  :root { --px: 80px; }
+
+  #hero { grid-template-columns: 1fr 480px; }
+  .hero-photo-wrap { width: 340px; }
+  .hero-photo-frame { width: 340px; height: 453px; }
+  .hero-photo-initials { font-size: 96px; }
+  .hero-photo-deco { width: 80px; height: 80px; top: -20px; right: -20px; }
+  .hero-bg-line { right: 400px; }
+}
+
+/* ════════════════════════════════════════════════
+   ULTRA-WIDE — max content width
+════════════════════════════════════════════════ */
+@media (min-width: 1800px) {
+  #main-nav, #hero, #stats .stat-item,
+  section, footer {
+    max-width: 1800px; margin-left: auto; margin-right: auto;
+  }
+  #main-nav { left: 50%; right: auto; transform: translateX(-50%); width: 100%; max-width: 1800px; }
+}
+
+/* ════════════════════════════════════════════════
+   REDUCED MOTION
+════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { transition-duration: .01ms !important; }
+}
+
+/* ── CONTACT MODAL ── */
+.contact-modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0); pointer-events: none;
+  transition: background .35s ease;
+}
+.contact-modal-overlay.open {
+  background: rgba(0,0,0,.75); pointer-events: all;
+}
+.contact-modal {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 501;
+  width: min(480px, 100vw);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .4s cubic-bezier(.77,0,.18,1);
+  pointer-events: none;
+}
+.contact-modal.open {
+  transform: none; pointer-events: all;
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 40px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+}
+.modal-title {
+  font-family: var(--serif); font-size: 13px; font-weight: 300;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+}
+.modal-close {
+  width: 40px; height: 40px; border: 1px solid var(--border2); background: none;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); transition: border-color .25s, color .25s;
+}
+.modal-close:hover { border-color: var(--gold); color: var(--gold); }
+.modal-body {
+  flex: 1; overflow-y: auto; padding: 0 40px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.modal-heading {
+  font-family: var(--serif); font-size: clamp(36px, 7vw, 52px);
+  font-weight: 300; line-height: 1.05; letter-spacing: -.015em;
+  margin-bottom: 12px;
+}
+.modal-heading em { font-style: italic; color: var(--gold); }
+.modal-sub {
+  font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.8;
+  margin-bottom: 40px; max-width: 320px;
+}
+.modal-links { display: flex; flex-direction: column; }
+.modal-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0; border-bottom: 1px solid var(--border);
+  text-decoration: none; color: var(--text); min-height: 80px;
+  transition: padding-left .3s ease;
+}
+.modal-link:first-child { border-top: 1px solid var(--border); }
+.modal-link:hover { padding-left: 12px; }
+.modal-link-body { display: flex; flex-direction: column; gap: 6px; }
+.modal-link-meta {
+  font-size: 10px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted);
+}
+.modal-link-value {
+  font-size: 16px; font-weight: 300; color: var(--text);
+  transition: color .25s; letter-spacing: -.01em;
+}
+.modal-link:hover .modal-link-value { color: var(--gold); }
+.modal-arrow {
+  width: 38px; height: 38px; flex-shrink: 0; border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .25s, background .25s;
+}
+.modal-link:hover .modal-arrow { border-color: var(--gold); background: var(--gold); }
+.modal-link:hover .modal-arrow svg { stroke: var(--bg); }
+.modal-arrow svg { width: 14px; height: 14px; stroke: var(--muted); transition: stroke .25s; }
+.modal-footer {
+  padding: 28px 40px; border-top: 1px solid var(--border); flex-shrink: 0;
+}
+.modal-form-cta {
+  display: inline-flex; align-items: center; gap: 10px; width: 100%;
+  justify-content: center; padding: 16px; background: var(--gold);
+  color: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; border: none; cursor: pointer;
+  transition: background .25s; text-decoration: none;
+}
+.modal-form-cta:hover { background: var(--gold-lt); }
+
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- STICKY MOBILE CTA --&gt;
+&lt;a href=&quot;#&quot; class=&quot;sticky-cta nav-contact-trigger&quot; id=&quot;sticky-cta&quot;&gt;
+  Обсудить задачу
+  &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+    &lt;path d=&quot;M3 8h10M9 4l4 4-4 4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
+  &lt;/svg&gt;
+&lt;/a&gt;
+
+&lt;!-- MOBILE DRAWER --&gt;
+&lt;div class=&quot;nav-drawer&quot; id=&quot;nav-drawer&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Меню навигации&quot;&gt;
+  &lt;a href=&quot;#expertise&quot; class=&quot;drawer-link&quot;&gt;Экспертиза&lt;/a&gt;
+  &lt;a href=&quot;#cases&quot;     class=&quot;drawer-link&quot;&gt;Кейсы&lt;/a&gt;
+  &lt;a href=&quot;#about&quot;     class=&quot;drawer-link&quot;&gt;О себе&lt;/a&gt;
+  &lt;a href=&quot;#&quot; class=&quot;drawer-link nav-contact-trigger&quot;&gt;Контакт&lt;/a&gt;
+  &lt;a href=&quot;#&quot; class=&quot;drawer-cta nav-contact-trigger&quot;&gt;Обсудить задачу&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- NAV --&gt;
+&lt;nav id=&quot;main-nav&quot; role=&quot;navigation&quot; aria-label=&quot;Основная навигация&quot;&gt;
+  &lt;a href=&quot;#hero&quot; class=&quot;nav-name&quot;&gt;А. Морозов&lt;/a&gt;
+  &lt;ul class=&quot;nav-links&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#expertise&quot;&gt;Экспертиза&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#cases&quot;&gt;Кейсы&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#about&quot;&gt;О себе&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;nav-contact-trigger&quot; aria-haspopup=&quot;dialog&quot;&gt;Контакт&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;a href=&quot;#&quot; class=&quot;nav-cta nav-contact-trigger&quot;&gt;Обсудить проект&lt;/a&gt;
+  &lt;button class=&quot;nav-burger&quot; id=&quot;nav-burger&quot; aria-label=&quot;Открыть меню&quot; aria-expanded=&quot;false&quot;&gt;
+    &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/nav&gt;
+
+&lt;!-- HERO --&gt;
+&lt;section id=&quot;hero&quot; aria-label=&quot;Главная&quot;&gt;
+  &lt;div class=&quot;hero-bg-line&quot;  aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;hero-bg-line2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+
+  &lt;div class=&quot;hero-photo-col&quot;&gt;
+    &lt;div class=&quot;hero-photo-wrap&quot;&gt;
+      &lt;div class=&quot;hero-photo-deco&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;hero-photo-frame&quot; aria-label=&quot;Фото — вставьте своё&quot;&gt;
+        &lt;span class=&quot;hero-photo-initials&quot; aria-hidden=&quot;true&quot;&gt;АМ&lt;/span&gt;
+        &lt;span class=&quot;hero-photo-hint&quot;&gt;← вставьте фото&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;hero-photo-tag&quot;&gt;
+        Доступен для проектов&amp;nbsp;&amp;nbsp;&lt;span&gt;→ 2025&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;hero-content&quot;&gt;
+    &lt;div class=&quot;hero-label&quot;&gt;CFO · Head of Finance · Советник&lt;/div&gt;
+    &lt;h1 class=&quot;hero-name&quot;&gt;Александр&lt;br&gt;&lt;em&gt;Морозов&lt;/em&gt;&lt;/h1&gt;
+    &lt;p class=&quot;hero-description&quot;&gt;
+      Выстраиваю &lt;strong&gt;финансовую функцию и систему бизнес-планирования&lt;/strong&gt; для компаний на стадии роста — от постановки управленческого учёта до подготовки к M&amp;amp;A и привлечению финансирования.
+    &lt;/p&gt;
+    &lt;div class=&quot;hero-actions&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;btn-primary nav-contact-trigger&quot;&gt;
+        Обсудить задачу
+        &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;path d=&quot;M3 8h10M9 4l4 4-4 4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
+        &lt;/svg&gt;
+      &lt;/a&gt;
+      &lt;a href=&quot;#cases&quot; class=&quot;btn-ghost&quot;&gt;Смотреть кейсы&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;scroll-indicator&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;span class=&quot;scroll-line&quot;&gt;&lt;/span&gt;
+    Прокрутите вниз
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- STATS --&gt;
+&lt;div id=&quot;stats&quot; role=&quot;region&quot; aria-label=&quot;Статистика&quot;&gt;
+  &lt;div class=&quot;stat-item reveal&quot;&gt;
+    &lt;div class=&quot;stat-number&quot;&gt;14&lt;em&gt;+&lt;/em&gt;&lt;/div&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;лет в финансах&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;stat-item reveal reveal-delay-1&quot;&gt;
+    &lt;div class=&quot;stat-number&quot;&gt;₽80&lt;em&gt;млрд&lt;/em&gt;&lt;/div&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;под управлением&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;stat-item reveal reveal-delay-2&quot;&gt;
+    &lt;div class=&quot;stat-number&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;успешных IPO/SPO&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;stat-item reveal reveal-delay-3&quot;&gt;
+    &lt;div class=&quot;stat-number&quot;&gt;20&lt;em&gt;+&lt;/em&gt;&lt;/div&gt;
+    &lt;div class=&quot;stat-label&quot;&gt;компаний-клиентов&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- EXPERTISE --&gt;
+&lt;section id=&quot;expertise&quot; aria-labelledby=&quot;exp-heading&quot;&gt;
+  &lt;div class=&quot;section-header&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;section-tag&quot;&gt;Направления&lt;/div&gt;
+      &lt;h2 class=&quot;section-title&quot; id=&quot;exp-heading&quot;&gt;Ключевая&lt;br&gt;&lt;em&gt;экспертиза&lt;/em&gt;&lt;/h2&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;expertise-grid&quot;&gt;
+    &lt;div class=&quot;exp-card reveal&quot;&gt;
+      &lt;div class=&quot;exp-num&quot;&gt;01&lt;/div&gt;
+      &lt;div class=&quot;exp-title&quot;&gt;Стратегическое финансовое управление&lt;/div&gt;
+      &lt;div class=&quot;exp-text&quot;&gt;Разработка финансовой стратегии, долгосрочное планирование, управление структурой капитала. Работа с советом директоров и акционерами.&lt;/div&gt;
+      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;CFO&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Стратегия&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;CAPEX&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;exp-card reveal reveal-delay-1&quot;&gt;
+      &lt;div class=&quot;exp-num&quot;&gt;02&lt;/div&gt;
+      &lt;div class=&quot;exp-title&quot;&gt;Бизнес-планирование и FP&amp;amp;A&lt;/div&gt;
+      &lt;div class=&quot;exp-text&quot;&gt;Построение систем бюджетирования, долгосрочного прогнозирования, управленческой отчётности и анализа отклонений в режиме реального времени.&lt;/div&gt;
+      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;FP&amp;amp;A&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Бюджетирование&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;BI&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;exp-card reveal reveal-delay-2&quot;&gt;
+      &lt;div class=&quot;exp-num&quot;&gt;03&lt;/div&gt;
+      &lt;div class=&quot;exp-title&quot;&gt;M&amp;amp;A и привлечение финансирования&lt;/div&gt;
+      &lt;div class=&quot;exp-text&quot;&gt;Финансовое моделирование сделок, due diligence, подготовка к IPO/SPO, структурирование долгового и акционерного финансирования.&lt;/div&gt;
+      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;M&amp;amp;A&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Due Diligence&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;IPO&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;exp-card reveal&quot;&gt;
+      &lt;div class=&quot;exp-num&quot;&gt;04&lt;/div&gt;
+      &lt;div class=&quot;exp-title&quot;&gt;Постановка управленческого учёта&lt;/div&gt;
+      &lt;div class=&quot;exp-text&quot;&gt;Внедрение МСФО, построение управленческой отчётности с нуля, автоматизация учётных процессов, переход от РСБУ к международным стандартам.&lt;/div&gt;
+      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;МСФО&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;РСБУ&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;ERP&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;exp-card reveal reveal-delay-1&quot;&gt;
+      &lt;div class=&quot;exp-num&quot;&gt;05&lt;/div&gt;
+      &lt;div class=&quot;exp-title&quot;&gt;Управление рисками и казначейство&lt;/div&gt;
+      &lt;div class=&quot;exp-text&quot;&gt;Выстраивание казначейства, управление ликвидностью, хеджирование, работа с банками и построение системы финансовых рисков.&lt;/div&gt;
+      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;Treasury&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Ликвидность&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Риски&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;exp-card reveal reveal-delay-2&quot;&gt;
+      &lt;div class=&quot;exp-num&quot;&gt;06&lt;/div&gt;
+      &lt;div class=&quot;exp-title&quot;&gt;Трансформация финансовой функции&lt;/div&gt;
+      &lt;div class=&quot;exp-text&quot;&gt;Реструктуризация финотдела, внедрение BI-инструментов, цифровизация процессов, построение команды и KPI финансовой службы.&lt;/div&gt;
+      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;Трансформация&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;BI&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Команда&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- CASES --&gt;
+&lt;section id=&quot;cases&quot; aria-labelledby=&quot;cases-heading&quot;&gt;
+  &lt;div class=&quot;section-header&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;section-tag&quot;&gt;Результаты&lt;/div&gt;
+      &lt;h2 class=&quot;section-title&quot; id=&quot;cases-heading&quot;&gt;Избранные&lt;br&gt;&lt;em&gt;кейсы&lt;/em&gt;&lt;/h2&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;cases-list&quot;&gt;
+
+    &lt;article class=&quot;case-item reveal&quot;&gt;
+      &lt;div class=&quot;case-num&quot; aria-hidden=&quot;true&quot;&gt;01&lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class=&quot;case-company&quot;&gt;Ритейл · 2500+ точек&lt;/div&gt;
+        &lt;h3 class=&quot;case-title&quot;&gt;Построение системы FP&amp;amp;A с нуля и переход на единую управленческую отчётность&lt;/h3&gt;
+        &lt;div class=&quot;case-body&quot;&gt;
+          Компания работала без единой системы бюджетирования: каждый дивизион вёл учёт самостоятельно. &lt;strong&gt;Внедрил интегрированную FP&amp;amp;A-платформу, сократил цикл закрытия месяца с 18 до 4 дней&lt;/strong&gt; и обеспечил онлайн-видимость финансовых результатов для топ-менеджмента.
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;case-result&quot; aria-label=&quot;Результат: минус 78% время закрытия&quot;&gt;
+        &lt;div class=&quot;case-result-num&quot;&gt;−78%&lt;/div&gt;
+        &lt;div class=&quot;case-result-label&quot;&gt;время закрытия&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;article class=&quot;case-item reveal&quot;&gt;
+      &lt;div class=&quot;case-num&quot; aria-hidden=&quot;true&quot;&gt;02&lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class=&quot;case-company&quot;&gt;Технологическая компания · Series B&lt;/div&gt;
+        &lt;h3 class=&quot;case-title&quot;&gt;Подготовка к привлечению раунда и структурирование долгосрочного финансирования&lt;/h3&gt;
+        &lt;div class=&quot;case-body&quot;&gt;
+          &lt;strong&gt;Выстроил финансовую модель, investor deck и пакет due diligence&lt;/strong&gt; для привлечения раунда $30 млн. Параллельно структурировал кредитную линию с тремя банками, оптимизировав стоимость долга на 2,3 п.п.
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;case-result&quot; aria-label=&quot;Результат: привлечено $30 млн&quot;&gt;
+        &lt;div class=&quot;case-result-num&quot;&gt;$30M&lt;/div&gt;
+        &lt;div class=&quot;case-result-label&quot;&gt;привлечено&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;article class=&quot;case-item reveal&quot;&gt;
+      &lt;div class=&quot;case-num&quot; aria-hidden=&quot;true&quot;&gt;03&lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class=&quot;case-company&quot;&gt;Производство · Группа компаний&lt;/div&gt;
+        &lt;h3 class=&quot;case-title&quot;&gt;Финансовая интеграция после M&amp;amp;A: объединение трёх юридических лиц&lt;/h3&gt;
+        &lt;div class=&quot;case-body&quot;&gt;
+          После поглощения трёх активов группа вела разрозненный учёт в несовместимых системах. &lt;strong&gt;Объединил финансовую функцию за 9 месяцев, перевёл на единый план счетов и стандарт МСФО&lt;/strong&gt;, сократил ФОТ финотдела на 22% без потери качества.
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;case-result&quot; aria-label=&quot;Результат: минус 22% ФОТ финотдела&quot;&gt;
+        &lt;div class=&quot;case-result-num&quot;&gt;−22%&lt;/div&gt;
+        &lt;div class=&quot;case-result-label&quot;&gt;ФОТ финотдела&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- ABOUT --&gt;
+&lt;section id=&quot;about&quot; aria-labelledby=&quot;about-heading&quot;&gt;
+  &lt;div class=&quot;about-left&quot;&gt;
+    &lt;div class=&quot;section-tag&quot;&gt;О себе&lt;/div&gt;
+    &lt;h2 class=&quot;section-title about-title&quot; id=&quot;about-heading&quot;&gt;Опыт&lt;br&gt;&lt;em&gt;и подход&lt;/em&gt;&lt;/h2&gt;
+    &lt;div class=&quot;about-text reveal&quot;&gt;
+      &lt;p&gt;Более 14 лет работаю на стыке финансов и стратегии в компаниях от Series A до публичных групп с выручкой 50+ млрд рублей. Прошёл путь от финансового аналитика до CFO, успел поработать в ритейле, технологиях и производственном секторе.&lt;/p&gt;
+      &lt;p&gt;Верю, что &lt;strong&gt;главная задача финансового директора — не контроль, а создание информационной среды&lt;/strong&gt;, в которой CEO и акционеры принимают более быстрые и точные решения. Финансы должны быть партнёром бизнеса, а не тормозом.&lt;/p&gt;
+      &lt;p&gt;Открыт к проектной работе в роли &lt;strong&gt;Fractional CFO&lt;/strong&gt;, участию в советах директоров и консультированию по трансформации финансовой функции.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;about-right reveal reveal-delay-1&quot;&gt;
+    &lt;div class=&quot;section-tag&quot;&gt;Образование и сертификаты&lt;/div&gt;
+    &lt;ul class=&quot;creds-list&quot;&gt;
+      &lt;li&gt;
+        &lt;div&gt;&lt;div class=&quot;cred-title&quot;&gt;MBA, Finance&lt;/div&gt;&lt;div class=&quot;cred-meta&quot;&gt;London Business School, 2014&lt;/div&gt;&lt;/div&gt;
+        &lt;span class=&quot;cred-badge&quot;&gt;MBA&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div&gt;&lt;div class=&quot;cred-title&quot;&gt;ACCA — полная квалификация&lt;/div&gt;&lt;div class=&quot;cred-meta&quot;&gt;Chartered Certified Accountants&lt;/div&gt;&lt;/div&gt;
+        &lt;span class=&quot;cred-badge&quot;&gt;ACCA&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div&gt;&lt;div class=&quot;cred-title&quot;&gt;CFA Level III&lt;/div&gt;&lt;div class=&quot;cred-meta&quot;&gt;CFA Institute, 2017&lt;/div&gt;&lt;/div&gt;
+        &lt;span class=&quot;cred-badge&quot;&gt;CFA&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div&gt;&lt;div class=&quot;cred-title&quot;&gt;Экономика, Финансы&lt;/div&gt;&lt;div class=&quot;cred-meta&quot;&gt;МГУ им. Ломоносова, 2010&lt;/div&gt;&lt;/div&gt;
+        &lt;span class=&quot;cred-badge&quot;&gt;МГУ&lt;/span&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- TESTIMONIALS --&gt;
+&lt;section id=&quot;testimonials&quot; aria-labelledby=&quot;testi-heading&quot;&gt;
+  &lt;div class=&quot;section-header&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;section-tag&quot;&gt;Отзывы&lt;/div&gt;
+      &lt;h2 class=&quot;section-title&quot; id=&quot;testi-heading&quot;&gt;Говорят&lt;br&gt;&lt;em&gt;партнёры&lt;/em&gt;&lt;/h2&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;testi-grid&quot;&gt;
+    &lt;blockquote class=&quot;testi-card reveal&quot;&gt;
+      &lt;div class=&quot;testi-quote&quot; aria-hidden=&quot;true&quot;&gt;&quot;&lt;/div&gt;
+      &lt;p class=&quot;testi-text&quot;&gt;Александр полностью изменил наше представление о том, как должна работать финансовая функция в растущей компании. За год мы перешли от Excel-хаоса к системной отчётности, которой доверяют инвесторы.&lt;/p&gt;
+      &lt;footer class=&quot;testi-author&quot;&gt;
+        &lt;div class=&quot;testi-name&quot;&gt;Михаил Козлов&lt;/div&gt;
+        &lt;div class=&quot;testi-role&quot;&gt;CEO, TechVenture Group&lt;/div&gt;
+      &lt;/footer&gt;
+    &lt;/blockquote&gt;
+    &lt;blockquote class=&quot;testi-card reveal reveal-delay-1&quot;&gt;
+      &lt;div class=&quot;testi-quote&quot; aria-hidden=&quot;true&quot;&gt;&quot;&lt;/div&gt;
+      &lt;p class=&quot;testi-text&quot;&gt;Редкое сочетание: человек, который говорит на языке акционеров и инвесторов, при этом отлично понимает операционную реальность. Привлечение раунда прошло значительно быстрее, чем мы ожидали.&lt;/p&gt;
+      &lt;footer class=&quot;testi-author&quot;&gt;
+        &lt;div class=&quot;testi-name&quot;&gt;Елена Сорокина&lt;/div&gt;
+        &lt;div class=&quot;testi-role&quot;&gt;Основатель, Retail Platform&lt;/div&gt;
+      &lt;/footer&gt;
+    &lt;/blockquote&gt;
+    &lt;blockquote class=&quot;testi-card reveal reveal-delay-2&quot;&gt;
+      &lt;div class=&quot;testi-quote&quot; aria-hidden=&quot;true&quot;&gt;&quot;&lt;/div&gt;
+      &lt;p class=&quot;testi-text&quot;&gt;Работали с Александром в роли Fractional CFO в период интеграции активов. Его способность выстраивать консенсус между командами оказалась не менее ценной, чем финансовая экспертиза.&lt;/p&gt;
+      &lt;footer class=&quot;testi-author&quot;&gt;
+        &lt;div class=&quot;testi-name&quot;&gt;Андрей Волков&lt;/div&gt;
+        &lt;div class=&quot;testi-role&quot;&gt;Партнёр, Meridian Capital&lt;/div&gt;
+      &lt;/footer&gt;
+    &lt;/blockquote&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- CONTACT --&gt;
+&lt;section id=&quot;contact&quot; aria-labelledby=&quot;contact-heading&quot;&gt;
+  &lt;div class=&quot;contact-left&quot;&gt;
+    &lt;div class=&quot;section-tag&quot;&gt;Напишите напрямую&lt;/div&gt;
+    &lt;h2 class=&quot;contact-lead&quot; id=&quot;contact-heading&quot;&gt;Обсудим&lt;br&gt;&lt;em&gt;вашу задачу&lt;/em&gt;&lt;/h2&gt;
+    &lt;p class=&quot;contact-sub&quot;&gt;Заполните форму — отвечу в течение одного рабочего дня. Или &lt;a href=&quot;#&quot; class=&quot;nav-contact-trigger&quot; style=&quot;color:var(--gold);border-bottom:1px solid var(--gold-dim)&quot;&gt;откройте контакты&lt;/a&gt; для прямой связи.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;contact-form-wrap reveal&quot;&gt;
+    &lt;div class=&quot;section-tag&quot;&gt;Написать напрямую&lt;/div&gt;
+    &lt;form class=&quot;contact-form&quot; id=&quot;contact-form&quot; novalidate&gt;
+      &lt;div class=&quot;form-grid&quot;&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label for=&quot;f-name&quot;&gt;Имя&lt;/label&gt;
+          &lt;input id=&quot;f-name&quot; type=&quot;text&quot; name=&quot;name&quot; placeholder=&quot;Иван Петров&quot; autocomplete=&quot;name&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label for=&quot;f-company&quot;&gt;Компания&lt;/label&gt;
+          &lt;input id=&quot;f-company&quot; type=&quot;text&quot; name=&quot;company&quot; placeholder=&quot;ООО «Название»&quot; autocomplete=&quot;organization&quot;&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;f-email&quot;&gt;Email&lt;/label&gt;
+        &lt;input id=&quot;f-email&quot; type=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;ivan@company.ru&quot; autocomplete=&quot;email&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;f-message&quot;&gt;Ваша задача&lt;/label&gt;
+        &lt;textarea id=&quot;f-message&quot; name=&quot;message&quot; placeholder=&quot;Опишите задачу — построить отчётность, подготовиться к раунду, пройти due diligence...&quot;&gt;&lt;/textarea&gt;
+      &lt;/div&gt;
+      &lt;button type=&quot;submit&quot; class=&quot;form-submit&quot; id=&quot;form-submit&quot;&gt;
+        Отправить
+        &lt;svg width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;path d=&quot;M3 8h10M9 4l4 4-4 4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
+        &lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- FOOTER --&gt;
+&lt;footer&gt;
+  &lt;div class=&quot;footer-copy&quot;&gt;© 2025 Александр Морозов · CFO · Финансовый советник&lt;/div&gt;
+  &lt;div class=&quot;footer-links&quot;&gt;
+    &lt;a href=&quot;#hero&quot;&gt;Наверх ↑&lt;/a&gt;
+    &lt;a href=&quot;#expertise&quot;&gt;Экспертиза&lt;/a&gt;
+    &lt;a href=&quot;#cases&quot;&gt;Кейсы&lt;/a&gt;
+    &lt;a href=&quot;#about&quot;&gt;О себе&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;!-- CONTACT MODAL --&gt;
+&lt;div class=&quot;contact-modal-overlay&quot; id=&quot;contact-overlay&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;
+&lt;aside class=&quot;contact-modal&quot; id=&quot;contact-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Контакт&quot;&gt;
+  &lt;div class=&quot;modal-header&quot;&gt;
+    &lt;span class=&quot;modal-title&quot;&gt;Контакт&lt;/span&gt;
+    &lt;button class=&quot;modal-close&quot; id=&quot;modal-close&quot; aria-label=&quot;Закрыть&quot;&gt;
+      &lt;svg width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;
+        &lt;path d=&quot;M2 2l12 12M14 2L2 14&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
+      &lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;modal-body&quot;&gt;
+    &lt;h2 class=&quot;modal-heading&quot;&gt;Давайте&lt;br&gt;&lt;em&gt;поговорим&lt;/em&gt;&lt;/h2&gt;
+    &lt;p class=&quot;modal-sub&quot;&gt;Открыт к проектной работе, консультациям и участию в совете директоров.&lt;/p&gt;
+    &lt;nav class=&quot;modal-links&quot; aria-label=&quot;Способы связи&quot;&gt;
+      &lt;a href=&quot;mailto:alexander@morozov.finance&quot; class=&quot;modal-link&quot;&gt;
+        &lt;div class=&quot;modal-link-body&quot;&gt;
+          &lt;div class=&quot;modal-link-meta&quot;&gt;Email&lt;/div&gt;
+          &lt;div class=&quot;modal-link-value&quot;&gt;alexander@morozov.finance&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;modal-arrow&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M3 13L13 3M13 3H5M13 3v8&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
+        &lt;/div&gt;
+      &lt;/a&gt;
+      &lt;a href=&quot;https://linkedin.com/in/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;modal-link&quot;&gt;
+        &lt;div class=&quot;modal-link-body&quot;&gt;
+          &lt;div class=&quot;modal-link-meta&quot;&gt;LinkedIn&lt;/div&gt;
+          &lt;div class=&quot;modal-link-value&quot;&gt;linkedin.com/in/morozov-cfo&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;modal-arrow&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M3 13L13 3M13 3H5M13 3v8&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
+        &lt;/div&gt;
+      &lt;/a&gt;
+      &lt;a href=&quot;https://t.me/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;modal-link&quot;&gt;
+        &lt;div class=&quot;modal-link-body&quot;&gt;
+          &lt;div class=&quot;modal-link-meta&quot;&gt;Telegram&lt;/div&gt;
+          &lt;div class=&quot;modal-link-value&quot;&gt;@morozov_cfo&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;modal-arrow&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M3 13L13 3M13 3H5M13 3v8&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
+        &lt;/div&gt;
+      &lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;modal-footer&quot;&gt;
+    &lt;a href=&quot;#contact&quot; class=&quot;modal-form-cta&quot; id=&quot;modal-to-form&quot;&gt;
+      Написать через форму
+      &lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;
+        &lt;path d=&quot;M3 8h10M9 4l4 4-4 4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
+      &lt;/svg&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/aside&gt;
+
+&lt;script&gt;
+/* ── Nav scroll ── */
+const nav = document.getElementById(&#x27;main-nav&#x27;);
+window.addEventListener(&#x27;scroll&#x27;, () =&gt; {
+  nav.classList.toggle(&#x27;scrolled&#x27;, window.scrollY &gt; 60);
+}, { passive: true });
+
+/* ── Burger menu ── */
+const burger = document.getElementById(&#x27;nav-burger&#x27;);
+const drawer = document.getElementById(&#x27;nav-drawer&#x27;);
+
+function closeDrawer() {
+  burger.classList.remove(&#x27;open&#x27;);
+  drawer.classList.remove(&#x27;open&#x27;);
+  burger.setAttribute(&#x27;aria-expanded&#x27;, &#x27;false&#x27;);
+  document.body.style.overflow = &#x27;&#x27;;
+}
+function openDrawer() {
+  burger.classList.add(&#x27;open&#x27;);
+  drawer.classList.add(&#x27;open&#x27;);
+  burger.setAttribute(&#x27;aria-expanded&#x27;, &#x27;true&#x27;);
+  document.body.style.overflow = &#x27;hidden&#x27;;
+}
+burger.addEventListener(&#x27;click&#x27;, () =&gt; {
+  drawer.classList.contains(&#x27;open&#x27;) ? closeDrawer() : openDrawer();
+});
+drawer.querySelectorAll(&#x27;a:not(.nav-contact-trigger)&#x27;).forEach(a =&gt; a.addEventListener(&#x27;click&#x27;, closeDrawer));
+document.addEventListener(&#x27;keydown&#x27;, e =&gt; { if (e.key === &#x27;Escape&#x27;) { closeDrawer(); closeContactModal(); } });
+
+/* ── Contact Modal ── */
+const overlay    = document.getElementById(&#x27;contact-overlay&#x27;);
+const modal      = document.getElementById(&#x27;contact-modal&#x27;);
+const modalClose = document.getElementById(&#x27;modal-close&#x27;);
+const modalToForm = document.getElementById(&#x27;modal-to-form&#x27;);
+
+function openContactModal(e) {
+  if (e) e.preventDefault();
+  closeDrawer();
+  if (!overlay || !modal) return;
+  overlay.classList.add(&#x27;open&#x27;);
+  modal.classList.add(&#x27;open&#x27;);
+  document.body.style.overflow = &#x27;hidden&#x27;;
+  if (modalClose) modalClose.focus();
+}
+function closeContactModal() {
+  if (!overlay || !modal) return;
+  overlay.classList.remove(&#x27;open&#x27;);
+  modal.classList.remove(&#x27;open&#x27;);
+  document.body.style.overflow = &#x27;&#x27;;
+}
+
+document.querySelectorAll(&#x27;.nav-contact-trigger&#x27;).forEach(el =&gt; {
+  el.addEventListener(&#x27;click&#x27;, openContactModal);
+});
+
+if (overlay)    overlay.addEventListener(&#x27;click&#x27;, closeContactModal);
+if (modalClose) modalClose.addEventListener(&#x27;click&#x27;, closeContactModal);
+if (modalToForm) modalToForm.addEventListener(&#x27;click&#x27;, (e) =&gt; {
+  e.preventDefault();
+  closeContactModal();
+  setTimeout(() =&gt; {
+    const cs = document.getElementById(&#x27;contact&#x27;);
+    if (cs) cs.scrollIntoView({ behavior: &#x27;smooth&#x27; });
+  }, 350);
+});
+
+/* ── Scroll reveal ── */
+const revealObserver = new IntersectionObserver((entries) =&gt; {
+  entries.forEach(e =&gt; { if (e.isIntersecting) e.target.classList.add(&#x27;visible&#x27;); });
+}, { threshold: 0.1, rootMargin: &#x27;0px 0px -32px 0px&#x27; });
+document.querySelectorAll(&#x27;.reveal&#x27;).forEach(el =&gt; revealObserver.observe(el));
+
+/* ── Sticky CTA ── */
+const stickyCta = document.getElementById(&#x27;sticky-cta&#x27;);
+const contactSection = document.getElementById(&#x27;contact&#x27;);
+const ctaObserver = new IntersectionObserver((entries) =&gt; {
+  entries.forEach(e =&gt; { stickyCta.classList.toggle(&#x27;hidden&#x27;, e.isIntersecting); });
+}, { threshold: 0.1 });
+ctaObserver.observe(contactSection);
+
+/* ── Form submit ── */
+document.getElementById(&#x27;contact-form&#x27;).addEventListener(&#x27;submit&#x27;, function(e) {
+  e.preventDefault();
+  const btn = document.getElementById(&#x27;form-submit&#x27;);
+  const original = btn.innerHTML;
+  btn.innerHTML = &#x27;Отправлено ✓&#x27;;
+  btn.style.background = &#x27;#4A7C5A&#x27;;
+  btn.disabled = true;
+  setTimeout(() =&gt; {
+    btn.innerHTML = original;
+    btn.style.background = &#x27;&#x27;;
+    btn.disabled = false;
+    this.reset();
+  }, 3500);
+});
+&lt;/script&gt;
+
+
+&lt;/body&gt;"
+    style="flex:1; width:100%; border:none; background:#09090B;"
+    title="Прототип сайта-визитки CFO"
+  ></iframe>
+</div>
+
+
+<script>
+function openProto(e) {
+  if (e) e.preventDefault();
+  var m = document.getElementById('proto-modal');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeProto() {
+  var m = document.getElementById('proto-modal');
+  m.style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeProto();
+});
+</script>
+
+</body>
+</html>
