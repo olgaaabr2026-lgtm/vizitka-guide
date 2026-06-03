@@ -6,78 +6,91 @@
 <title>Гид: Сайт-визитка для CFO и руководителей финансов</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#09090B;--surface:#111115;--surface2:#161619;
-  --border:#1C1C21;--border2:#252529;
-  --gold:#B8965A;--gold-lt:#D4AF78;--gold-dim:#6B5330;
-  --green:#3A7A5A;--green-lt:#4A9A6A;--green-dim:#1A3A2A;
-  --text:#EDE9E2;--muted:#6B6860;--muted2:#3A3835;--muted3:#2A2A2E;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'Manrope',system-ui,sans-serif;
+  --bg:#F9FAFB;
+  --surface:#FFFFFF;
+  --surface2:#F3F4F6;
+  --border:#E5E7EB;
+  --border2:#D1D5DB;
+  --gold:#C29B62; /* Спокойный золотой как на референсе */
+  --gold-lt:#D4AF78;
+  --gold-dim:#FDF8F3;
+  --hero-bg:#111827; /* Глубокий сине-черный */
+  --hero-bg2:#1E293B;
+  --text:#111827;
+  --muted:#4B5563;
+  --muted2:#6B7280;
+  --muted3:#9CA3AF;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
   --px:20px;
+  --radius:12px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:900;opacity:.5}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px var(--px);background:rgba(9,9,11,0);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-.top-nav.scrolled{background:rgba(9,9,11,.97);border-color:var(--border)}
-.top-nav-logo{font-family:var(--serif);font-size:17px;font-weight:300;letter-spacing:.08em}
-.top-nav-tag{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:none}
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px var(--px);background:rgba(17,24,39,0);color:#FFFFFF;transition:background .3s,box-shadow .3s,padding .3s}
+.top-nav.scrolled{background:var(--hero-bg);box-shadow:var(--shadow);padding:14px var(--px)}
+.top-nav-logo{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.02em}
+.top-nav-tag{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:none}
 
 /* HERO */
-.guide-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--px) 60px;position:relative;overflow:hidden}
-.hero-deco-line{position:absolute;top:0;bottom:0;left:calc(var(--px) + 90px);width:1px;background:var(--border);opacity:.5}
-.hero-deco-h{position:absolute;top:55%;left:0;right:0;height:1px;background:var(--border);opacity:.35}
-.hero-chapter{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:12px}
-.hero-chapter::before{content:'';width:24px;height:1px;background:var(--gold)}
-.guide-hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(44px,11vw,100px);line-height:.92;letter-spacing:-.02em;margin-bottom:40px}
-.guide-hero h1 em{font-style:italic;color:var(--gold)}
-.hero-desc{max-width:560px;font-size:16px;font-weight:300;line-height:1.85;color:#9B9790;margin-bottom:48px}
-.hero-desc strong{color:var(--text);font-weight:500}
-.hero-toc{display:flex;flex-wrap:wrap;gap:8px}
-.toc-pill{display:flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--border2);font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--muted);transition:border-color .25s,color .25s}
-.toc-pill:hover{border-color:var(--gold);color:var(--gold)}
-.toc-pill .pill-num{font-family:var(--serif);font-size:13px;color:var(--muted2)}
+.guide-hero{min-height:90vh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px var(--px) 80px;position:relative;overflow:hidden;background:linear-gradient(135deg, var(--hero-bg) 0%, var(--hero-bg2) 100%);color:#FFFFFF}
+.hero-chapter{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+.hero-chapter::before{content:'';width:32px;height:2px;background:var(--gold)}
+.guide-hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(44px,9vw,90px);line-height:1.05;letter-spacing:-.01em;margin-bottom:32px;color:#FFFFFF}
+.guide-hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-desc{max-width:600px;font-size:18px;font-weight:300;line-height:1.8;color:#D1D5DB;margin-bottom:56px}
+.hero-desc strong{color:#FFFFFF;font-weight:500}
+.hero-toc{display:flex;flex-wrap:wrap;gap:12px}
+.toc-pill{display:flex;align-items:center;gap:10px;padding:10px 20px;border:1px solid rgba(255,255,255,0.15);border-radius:30px;font-size:13px;font-weight:500;letter-spacing:.04em;color:#E5E7EB;background:rgba(255,255,255,0.03);transition:all .25s;backdrop-filter:blur(4px)}
+.toc-pill:hover{border-color:var(--gold);background:var(--gold);color:#FFFFFF;transform:translateY(-2px)}
+.toc-pill .pill-num{font-family:var(--sans);font-weight:600;font-size:12px;color:var(--gold-lt);opacity:0.8}
+.toc-pill:hover .pill-num{color:#FFFFFF;opacity:1}
 
 /* SECTION */
-.guide-section{padding:80px var(--px);position:relative}
+.guide-section{padding:100px var(--px);position:relative}
 .guide-section+.guide-section{border-top:1px solid var(--border)}
-.section-intro{margin-bottom:52px}
-.section-num{font-family:var(--serif);font-size:80px;font-weight:300;color:var(--muted3);line-height:1;letter-spacing:-.04em;margin-bottom:-16px}
-.section-tag{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.section-tag::before{content:'';width:20px;height:1px;background:var(--gold)}
-.section-title{font-family:var(--serif);font-size:clamp(28px,5vw,48px);font-weight:300;line-height:1.08;letter-spacing:-.01em;margin-bottom:16px}
-.section-title em{font-style:italic;color:var(--gold)}
-.section-lead{font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;max-width:640px}
+.section-intro{margin-bottom:64px}
+.section-num{font-family:var(--serif);font-size:100px;font-weight:700;color:var(--border);line-height:1;letter-spacing:-.04em;margin-bottom:-24px;opacity:0.5;position:relative;z-index:-1}
+.section-tag{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-tag::before{content:'';width:24px;height:2px;background:var(--gold)}
+.section-title{font-family:var(--serif);font-size:clamp(32px,6vw,56px);font-weight:600;line-height:1.1;letter-spacing:-.01em;margin-bottom:20px;color:var(--text)}
+.section-title em{font-style:italic;color:var(--gold);font-weight:400}
+.section-lead{font-size:18px;font-weight:400;color:var(--muted);line-height:1.75;max-width:680px}
 
 /* ── АНАЛИЗ САЙТА (ananeva.pro) ── */
 .analysis-hero{
-  background:var(--surface);border:1px solid var(--gold-dim);
+  background:var(--surface);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
   display:flex;flex-direction:column;
+  overflow:hidden;
 }
 .analysis-banner{
-  background:linear-gradient(90deg,#1A1208,#0F0D0A);
-  padding:12px 24px;display:flex;align-items:center;gap:12px;
-  border-bottom:1px solid var(--gold-dim);
+  background:var(--hero-bg);
+  padding:14px 28px;display:flex;align-items:center;gap:14px;
 }
-.analysis-dot{width:7px;height:7px;background:var(--gold);border-radius:50%}
-.analysis-banner-text{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.analysis-dot{width:8px;height:8px;background:var(--gold);border-radius:50%}
+.analysis-banner-text{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#FFFFFF}
 .analysis-body{display:grid;grid-template-columns:1fr;gap:0}
 
 /* preview */
-.analysis-preview{border-bottom:1px solid var(--border)}
-.browser-bar{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--muted3);border-bottom:1px solid var(--border)}
-.browser-dot{width:8px;height:8px;border-radius:50%}
+.analysis-preview{border-bottom:1px solid var(--border);background:#F9FAFB}
+.browser-bar{display:flex;align-items:center;gap:6px;padding:10px 16px;background:var(--surface2);border-bottom:1px solid var(--border)}
+.browser-dot{width:10px;height:10px;border-radius:50%}
 .browser-dot.r{background:#FF6058}.browser-dot.y{background:#FFBD2E}.browser-dot.g{background:#28CA41}
-.browser-url{flex:1;margin:0 10px;background:var(--border);border-radius:3px;padding:3px 10px;font-size:10px;color:var(--muted);letter-spacing:.04em}
-.preview-scene{height:220px;overflow:hidden;position:relative}
-/* ananeva preview */
+.browser-url{flex:1;margin:0 12px;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:4px 12px;font-size:11px;color:var(--muted2);letter-spacing:.04em}
+.preview-scene{height:240px;overflow:hidden;position:relative;border-radius:0 0 0 0}
+/* ananeva preview (оставляем цвета оригинального примера) */
 .prev-ananeva{background:#F8F9FA;height:100%;display:flex;flex-direction:column}
 .prev-an-nav{background:#1A2744;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .prev-an-logo{width:90px;height:16px;background:white;border-radius:2px;opacity:.9}
@@ -104,47 +117,47 @@ a{color:inherit;text-decoration:none}
 .prev-an-pain .ps{height:4px;background:#C8D4DC;border-radius:1px;width:90%}
 
 /* analysis info */
-.analysis-info{padding:32px 24px;display:flex;flex-direction:column;gap:24px}
+.analysis-info{padding:40px 32px;display:flex;flex-direction:column;gap:28px;background:var(--surface)}
 .analysis-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.badge{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px}
-.badge-ru{background:var(--gold-dim);color:var(--gold-lt)}
-.badge-fin{background:#1A2A20;color:#4A9A6A}
-.badge-tilda{background:#1A2A10;color:#6AC06A}
-.badge-direct{background:#2A1A00;color:#E8A030}
-.site-name-big{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1.2}
-.site-url-big{font-size:11px;color:var(--gold);letter-spacing:.06em;font-weight:500;margin-top:4px}
+.badge{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;background:var(--surface2);color:var(--muted)}
+.badge-ru{background:#EFF6FF;color:#1D4ED8}
+.badge-fin{background:#F0FDF4;color:#15803D}
+.badge-tilda{background:#FFFBEB;color:#B45309}
+.badge-direct{background:#F3F4F6;color:#374151}
+.site-name-big{font-family:var(--serif);font-size:32px;font-weight:600;line-height:1.2;color:var(--text)}
+.site-url-big{font-size:13px;color:var(--gold);letter-spacing:.06em;font-weight:600;margin-top:6px}
 
 /* pros / cons */
-.pros-cons{display:grid;grid-template-columns:1fr;gap:16px}
-.pc-block{border:1px solid var(--border2);padding:20px}
-.pc-title{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.pc-title.good{color:#4A9A6A}
-.pc-title.fix{color:#C88A3A}
-.pc-title::before{content:'';width:18px;height:1px}
-.pc-title.good::before{background:#4A9A6A}
-.pc-title.fix::before{background:#C88A3A}
-.pc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
-.pc-list li{font-size:13px;font-weight:300;color:var(--muted);line-height:1.75;display:flex;align-items:baseline;gap:8px}
-.pc-list li::before{font-size:11px;flex-shrink:0;font-weight:600}
-.pc-list.good li::before{content:'✓';color:#4A9A6A}
-.pc-list.fix li::before{content:'→';color:#C88A3A}
-.pc-list li strong{color:var(--text);font-weight:500}
-.analysis-cta{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);padding:10px 20px;transition:background .25s,color .25s;align-self:flex-start}
-.analysis-cta:hover{background:var(--gold);color:var(--bg)}
+.pros-cons{display:grid;grid-template-columns:1fr;gap:20px}
+.pc-block{border:1px solid var(--border);border-radius:8px;padding:24px;background:var(--bg)}
+.pc-title{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.pc-title.good{color:#059669}
+.pc-title.fix{color:#D97706}
+.pc-title::before{content:'';width:20px;height:2px;border-radius:2px}
+.pc-title.good::before{background:#059669}
+.pc-title.fix::before{background:#D97706}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.pc-list li{font-size:14px;font-weight:400;color:var(--muted);line-height:1.6;display:flex;align-items:baseline;gap:10px}
+.pc-list li::before{font-size:13px;flex-shrink:0;font-weight:700}
+.pc-list.good li::before{content:'✓';color:#059669}
+.pc-list.fix li::before{content:'→';color:#D97706}
+.pc-list li strong{color:var(--text);font-weight:600}
+.analysis-cta{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#FFFFFF;background:var(--gold);border-radius:6px;padding:12px 24px;transition:background .25s,transform .2s;align-self:flex-start}
+.analysis-cta:hover{background:var(--gold-lt);transform:translateY(-1px)}
 
 /* ── PROTOTYPE BLOCK ── */
-.proto-block{background:var(--surface);border:1px solid var(--border)}
-.proto-header{padding:14px 24px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--border);background:var(--muted3)}
-.proto-badge{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:4px 10px}
-.proto-title{font-size:13px;font-weight:500;color:var(--text)}
+.proto-block{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden}
+.proto-header{padding:16px 32px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.proto-badge{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#FFFFFF;background:var(--gold);padding:6px 12px;border-radius:4px}
+.proto-title{font-size:14px;font-weight:600;color:var(--text)}
 .proto-body{display:grid;grid-template-columns:1fr;gap:0}
-.proto-preview{height:260px;overflow:hidden;border-bottom:1px solid var(--border);position:relative;background:#09090B}
+.proto-preview{height:280px;overflow:hidden;border-bottom:1px solid var(--border);position:relative;background:#09090B} /* Фон превью остается темным, так как прототип темный */
 /* mini cfo-vizitka preview */
 .pv-nav{background:#09090B;border-bottom:1px solid #1C1C21;padding:8px 16px;display:flex;justify-content:space-between;align-items:center}
 .pv-navlogo{font-family:serif;font-size:11px;color:#EDE9E2;letter-spacing:.06em}
 .pv-navlinks{display:flex;gap:10px}
 .pv-navlinks span{width:30px;height:4px;background:#1C1C21;border-radius:1px}
-.pv-cta-nav{width:70px;height:16px;background:#B8965A;border-radius:0}
+.pv-cta-nav{width:70px;height:16px;background:#B8965A;border-radius:2px}
 .pv-hero{display:grid;grid-template-columns:1fr 80px;gap:12px;padding:16px;background:#09090B;border-bottom:1px solid #1C1C21}
 .pv-hero-txt{display:flex;flex-direction:column;gap:5px}
 .pv-label{width:50%;height:4px;background:#6B5330;border-radius:1px}
@@ -152,8 +165,8 @@ a{color:inherit;text-decoration:none}
 .pv-h1b{width:65%;height:11px;background:#B8965A;border-radius:1px;font-style:italic}
 .pv-sub{width:90%;height:4px;background:#2A2A2E;border-radius:1px;margin-top:2px}
 .pv-sub2{width:75%;height:4px;background:#2A2A2E;border-radius:1px}
-.pv-btn{width:80px;height:18px;background:#B8965A;border-radius:0;margin-top:6px}
-.pv-photo{background:#111115;border:1px solid #1C1C21;display:flex;align-items:center;justify-content:center}
+.pv-btn{width:80px;height:18px;background:#B8965A;border-radius:2px;margin-top:6px}
+.pv-photo{background:#111115;border:1px solid #1C1C21;display:flex;align-items:center;justify-content:center;border-radius:2px}
 .pv-photo span{font-family:serif;font-size:18px;color:#2A2A2E}
 .pv-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #1C1C21}
 .pv-stat{padding:8px 10px;border-right:1px solid #1C1C21}
@@ -166,72 +179,76 @@ a{color:inherit;text-decoration:none}
 .pv-exp-t{height:6px;background:#3A3835;border-radius:1px;width:85%;margin-bottom:3px}
 .pv-exp-s{height:4px;background:#2A2A2E;border-radius:1px;width:70%}
 
-.proto-info{padding:28px 24px}
-.proto-name{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:6px}
-.proto-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:20px;max-width:600px}
-.proto-features{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:24px}
-.proto-feat{display:flex;align-items:baseline;gap:10px;font-size:12px;color:#9B9790}
-.proto-feat::before{content:'→';color:var(--gold);font-size:11px;flex-shrink:0}
-.proto-feat strong{color:var(--text);font-weight:500}
-.proto-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;background:var(--gold);color:var(--bg);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:background .25s}
-.proto-cta:hover{background:var(--gold-lt)}
+.proto-info{padding:40px 32px;background:var(--surface)}
+.proto-name{font-family:var(--serif);font-size:28px;font-weight:600;margin-bottom:12px;color:var(--text)}
+.proto-desc{font-size:15px;font-weight:400;color:var(--muted);line-height:1.7;margin-bottom:28px;max-width:600px}
+.proto-features{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:32px}
+.proto-feat{display:flex;align-items:baseline;gap:12px;font-size:14px;color:var(--muted)}
+.proto-feat::before{content:'→';color:var(--gold);font-size:13px;flex-shrink:0;font-weight:700}
+.proto-feat strong{color:var(--text);font-weight:600}
+.proto-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--gold);color:#FFFFFF;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:6px;transition:background .25s,transform .2s;border:none;cursor:pointer}
+.proto-cta:hover{background:var(--gold-lt);transform:translateY(-1px)}
 
 /* ── DESIGN ADVICE ── */
-.advice-grid{display:grid;grid-template-columns:1fr;gap:2px;background:var(--border);margin-bottom:48px}
-.advice-card{background:var(--surface);padding:32px 28px;position:relative;overflow:hidden;transition:background .25s}
-.advice-card:hover{background:var(--surface2)}
-.advice-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--gold);transition:height .4s}
-.advice-card:hover::before{height:100%}
-.advice-num{font-family:var(--serif);font-size:48px;font-weight:300;color:var(--muted3);line-height:1;margin-bottom:12px;letter-spacing:-.03em}
-.advice-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px}
-.advice-body{font-size:13px;font-weight:300;color:var(--muted);line-height:1.85}
-.advice-body strong{color:var(--text);font-weight:500}
-.advice-body em{color:var(--gold);font-style:normal}
-.advice-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.advice-tag{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--muted2);padding:3px 8px}
+.advice-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:64px}
+.advice-card{background:var(--surface);padding:40px 32px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
+.advice-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.advice-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);opacity:0;transition:opacity .3s}
+.advice-card:hover::before{opacity:1}
+.advice-num{font-family:var(--serif);font-size:56px;font-weight:600;color:var(--border);line-height:1;margin-bottom:16px;letter-spacing:-.03em}
+.advice-title{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--text);margin-bottom:12px;line-height:1.3}
+.advice-body{font-size:15px;font-weight:400;color:var(--muted);line-height:1.75}
+.advice-body strong{color:var(--text);font-weight:600}
+.advice-body em{color:var(--gold);font-style:normal;font-weight:500}
+.advice-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.advice-tag{font-size:11px;font-weight:500;letter-spacing:.05em;color:var(--gold);background:var(--gold-dim);padding:6px 12px;border-radius:4px}
 
 /* palette swatches */
-.palette-row{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
-.swatch{height:28px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;letter-spacing:.06em;flex:1;min-width:40px}
+.palette-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.swatch{height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;letter-spacing:.06em;flex:1;min-width:48px;box-shadow:0 1px 2px rgba(0,0,0,0.05)}
 
 /* block order visual */
-.block-order{display:flex;flex-direction:column;gap:3px;margin-top:12px}
-.bo-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border:1px solid var(--border2);font-size:11px;color:var(--muted)}
-.bo-num{font-family:var(--serif);font-size:13px;color:var(--gold);width:20px;flex-shrink:0}
-.bo-name{font-weight:500;color:var(--text);flex:1}
-.bo-bar{height:6px;background:var(--gold-dim);border-radius:1px}
-.bo-why{font-size:10px;color:var(--muted2);flex-shrink:0;text-align:right}
+.block-order{display:flex;flex-direction:column;gap:8px;margin-top:20px}
+.bo-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;color:var(--muted);box-shadow:0 1px 3px rgba(0,0,0,0.02)}
+.bo-num{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--gold);width:24px;flex-shrink:0}
+.bo-name{font-weight:600;color:var(--text);flex:1}
+.bo-bar{height:6px;background:var(--gold-dim);border-radius:3px;overflow:hidden}
+.bo-bar-inner{height:100%;background:var(--gold);border-radius:3px}
+.bo-why{font-size:13px;color:var(--muted2);flex-shrink:0;text-align:right}
 
 /* ── GALLERIES ── */
-.insp-intro{margin-bottom:36px}
-.insp-grid{display:grid;grid-template-columns:1fr;gap:2px;background:var(--border);margin-bottom:48px}
-.insp-card{background:var(--surface);display:flex;align-items:center;gap:18px;padding:20px 22px;transition:background .25s;color:var(--text)}
-.insp-card:hover{background:var(--surface2)}
-.insp-icon{width:48px;height:48px;flex-shrink:0;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:18px;font-family:var(--serif);font-weight:300;transition:border-color .25s,color .25s}
-.insp-card:hover .insp-icon{border-color:var(--gold);color:var(--gold)}
+.insp-intro{margin-bottom:40px}
+.insp-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:64px}
+.insp-card{background:var(--surface);display:flex;align-items:center;gap:20px;padding:24px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s;color:var(--text)}
+.insp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.insp-icon{width:56px;height:56px;flex-shrink:0;background:var(--gold-dim);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-family:var(--serif);font-weight:600;color:var(--gold);transition:background .25s,color .25s}
+.insp-card:hover .insp-icon{background:var(--gold);color:#FFFFFF}
 .insp-info{flex:1;min-width:0}
-.insp-name{font-size:14px;font-weight:500;margin-bottom:2px}
-.insp-meta{font-size:12px;font-weight:300;color:var(--muted);line-height:1.6}
-.insp-badge{flex-shrink:0;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--border2);color:var(--muted);white-space:nowrap}
-.insp-arrow{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color .25s,transform .25s}
-.insp-card:hover .insp-arrow{color:var(--gold);transform:translateX(3px)}
+.insp-name{font-size:17px;font-weight:600;margin-bottom:4px;color:var(--text)}
+.insp-meta{font-size:14px;font-weight:400;color:var(--muted);line-height:1.6}
+.insp-badge{flex-shrink:0;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;background:var(--surface2);border-radius:4px;color:var(--muted);white-space:nowrap}
+.insp-arrow{width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--muted);background:var(--surface2);border-radius:50%;transition:all .25s}
+.insp-card:hover .insp-arrow{background:var(--gold);color:#FFFFFF;transform:translateX(4px)}
 
-.insp-subtitle{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.insp-subtitle::before{content:'';width:20px;height:1px;background:var(--muted2)}
+.insp-subtitle{font-size:13px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.insp-subtitle::before{content:'';width:24px;height:2px;background:var(--border2)}
+
+/* ERROR LIST */
+.error-list-container{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px;box-shadow:var(--shadow)}
 
 /* FOOTER */
-.guide-footer{border-top:1px solid var(--border);padding:28px var(--px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
-.guide-footer p{font-size:11px;color:var(--muted);letter-spacing:.06em}
+.guide-footer{border-top:1px solid var(--border);padding:40px var(--px);display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;background:var(--surface)}
+.guide-footer p{font-size:14px;color:var(--muted2);letter-spacing:.02em}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(0.16, 1, 0.3, 1),transform .7s cubic-bezier(0.16, 1, 0.3, 1)}
 .reveal.visible{opacity:1;transform:none}
-.rd1{transition-delay:.08s}.rd2{transition-delay:.16s}.rd3{transition-delay:.24s}
-.rd4{transition-delay:.32s}.rd5{transition-delay:.4s}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
+.rd4{transition-delay:.4s}.rd5{transition-delay:.5s}
 
 /* RESPONSIVE */
 @media(min-width:640px){
-  :root{--px:40px}
+  :root{--px:48px}
   .top-nav-tag{display:block}
   .proto-body{grid-template-columns:1fr 1fr}
   .proto-preview{border-bottom:none;border-right:1px solid var(--border)}
@@ -244,11 +261,11 @@ a{color:inherit;text-decoration:none}
   .proto-features{grid-template-columns:1fr 1fr}
 }
 @media(min-width:1024px){
-  :root{--px:60px}
+  :root{--px:80px}
   .advice-grid{grid-template-columns:repeat(3,1fr)}
   .insp-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media(min-width:1440px){:root{--px:80px}}
+@media(min-width:1440px){:root{--px:120px}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
@@ -456,61 +473,61 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <!-- Block order -->
-  <div style="margin-bottom:56px" class="reveal">
+  <div style="margin-bottom:72px" class="reveal">
     <div class="insp-subtitle">Порядок блоков и логика убеждения</div>
     <div class="block-order">
       <div class="bo-row">
         <span class="bo-num">01</span>
         <span class="bo-name">Hero — Кто я и что делаю</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:100%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:100%"></div></div></div>
         <span class="bo-why">Фокус: 1 предложение позиционирования</span>
       </div>
       <div class="bo-row">
         <span class="bo-num">02</span>
         <span class="bo-name">Боли клиента — «Вам нужен CFO, если…»</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:90%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:90%"></div></div></div>
         <span class="bo-why">Клиент узнаёт себя → остаётся</span>
       </div>
       <div class="bo-row">
         <span class="bo-num">03</span>
         <span class="bo-name">Статистика — Числа доверия</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:75%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:75%"></div></div></div>
         <span class="bo-why">Быстрое доверие без чтения</span>
       </div>
       <div class="bo-row">
         <span class="bo-num">04</span>
         <span class="bo-name">Экспертиза — Направления работы</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:80%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:80%"></div></div></div>
         <span class="bo-why">Уточняет, чем конкретно помогу</span>
       </div>
       <div class="bo-row">
         <span class="bo-num">05</span>
         <span class="bo-name">Кейсы — Задача → Действие → Результат₽</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:100%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:100%"></div></div></div>
         <span class="bo-why">Главный блок убеждения</span>
       </div>
       <div class="bo-row">
         <span class="bo-num">06</span>
         <span class="bo-name">О себе + Образование</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:65%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:65%"></div></div></div>
         <span class="bo-why">После кейсов — уже доверяют</span>
       </div>
       <div class="bo-row">
         <span class="bo-num">07</span>
         <span class="bo-name">Отзывы — Слова клиентов</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:85%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:85%"></div></div></div>
         <span class="bo-why">Финальное подтверждение</span>
       </div>
       <div class="bo-row">
         <span class="bo-num">08</span>
         <span class="bo-name">Стоимость (опционально)</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:55%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:55%"></div></div></div>
         <span class="bo-why">После ценности — не в начале</span>
       </div>
       <div class="bo-row">
         <span class="bo-num">09</span>
         <span class="bo-name">Контакт — Один шаг до звонка</span>
-        <div style="flex:1;margin:0 16px"><div class="bo-bar" style="width:70%"></div></div>
+        <div style="flex:1;margin:0 16px"><div class="bo-bar"><div class="bo-bar-inner" style="width:70%"></div></div></div>
         <span class="bo-why">Минимум полей, один CTA</span>
       </div>
     </div>
@@ -607,15 +624,15 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <!-- What to avoid -->
-  <div class="reveal" style="border:1px solid var(--border2);padding:28px">
-    <div class="insp-subtitle" style="margin-bottom:20px">Чего избегать — топ ошибок CFO-сайтов</div>
-    <div style="display:grid;grid-template-columns:1fr;gap:8px">
-      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">«Обо мне» вместо «Чем я помогу вам»</strong> — сайт должен говорить на языке клиента, не вашего резюме</span></div>
-      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Список регалий без контекста</strong> — «MBA, ACCA, CFA» без объяснения что это даёт клиенту</span></div>
-      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Несколько CTA-кнопок</strong> — одна кнопка, одно действие; «позвоните / напишите / скачайте / запишитесь» = ноль конверсии</span></div>
-      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Стоковые фото</strong> — руки с деньгами, графики роста, люди в костюмах из фотобанка = мгновенный сигнал недоверия</span></div>
-      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Кейсы без цифр</strong> — «помогли вырасти» не работает; нужна конкретная метрика: %, ₽, дни, разы</span></div>
-      <div style="display:flex;gap:10px;font-size:13px;color:var(--muted)"><span style="color:#C84A4A;flex-shrink:0;font-weight:600">✗</span><span><strong style="color:var(--text)">Форма с 8+ полями</strong> — имя, email, задача — этого достаточно; остальное узнаете на звонке</span></div>
+  <div class="reveal error-list-container">
+    <div class="insp-subtitle" style="margin-bottom:24px">Чего избегать — топ ошибок CFO-сайтов</div>
+    <div style="display:grid;grid-template-columns:1fr;gap:16px">
+      <div style="display:flex;gap:14px;font-size:15px;color:var(--muted)"><span style="color:#DC2626;flex-shrink:0;font-weight:700;font-size:18px;line-height:1.4">✗</span><span><strong style="color:var(--text)">«Обо мне» вместо «Чем я помогу вам»</strong> — сайт должен говорить на языке клиента, не вашего резюме</span></div>
+      <div style="display:flex;gap:14px;font-size:15px;color:var(--muted)"><span style="color:#DC2626;flex-shrink:0;font-weight:700;font-size:18px;line-height:1.4">✗</span><span><strong style="color:var(--text)">Список регалий без контекста</strong> — «MBA, ACCA, CFA» без объяснения что это даёт клиенту</span></div>
+      <div style="display:flex;gap:14px;font-size:15px;color:var(--muted)"><span style="color:#DC2626;flex-shrink:0;font-weight:700;font-size:18px;line-height:1.4">✗</span><span><strong style="color:var(--text)">Несколько CTA-кнопок</strong> — одна кнопка, одно действие; «позвоните / напишите / скачайте / запишитесь» = ноль конверсии</span></div>
+      <div style="display:flex;gap:14px;font-size:15px;color:var(--muted)"><span style="color:#DC2626;flex-shrink:0;font-weight:700;font-size:18px;line-height:1.4">✗</span><span><strong style="color:var(--text)">Стоковые фото</strong> — руки с деньгами, графики роста, люди в костюмах из фотобанка = мгновенный сигнал недоверия</span></div>
+      <div style="display:flex;gap:14px;font-size:15px;color:var(--muted)"><span style="color:#DC2626;flex-shrink:0;font-weight:700;font-size:18px;line-height:1.4">✗</span><span><strong style="color:var(--text)">Кейсы без цифр</strong> — «помогли вырасти» не работает; нужна конкретная метрика: %, ₽, дни, разы</span></div>
+      <div style="display:flex;gap:14px;font-size:15px;color:var(--muted)"><span style="color:#DC2626;flex-shrink:0;font-weight:700;font-size:18px;line-height:1.4">✗</span><span><strong style="color:var(--text)">Форма с 8+ полями</strong> — имя, email, задача — этого достаточно; остальное узнаете на звонке</span></div>
     </div>
   </div>
 </section>
@@ -809,53 +826,20 @@ a{color:inherit;text-decoration:none}
   <p style="color:var(--gold-dim)">CFO · Head of Finance · Head of Business Planning</p>
 </footer>
 
-<script>
-const nav = document.getElementById('top-nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
-
-<!-- ── PROTOTYPE MODAL ── -->
-<div id="proto-modal" style="
-  display:none; position:fixed; inset:0; z-index:9000;
-  background:#000; flex-direction:column;
-">
-  <div style="
-    flex-shrink:0; height:48px; background:#09090B;
-    border-bottom:1px solid #1C1C21;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 24px;
-  ">
-    <span style="font-family:'Manrope',sans-serif; font-size:11px; font-weight:600;
-      letter-spacing:.18em; text-transform:uppercase; color:#6B6860;">
-      Прототип — Александр Морозов CFO
-    </span>
-    <button onclick="closeProto()" style="
-      background:none; border:1px solid #1C1C21; color:#6B6860;
-      width:36px; height:36px; cursor:pointer; font-size:18px; line-height:1;
-      display:flex; align-items:center; justify-content:center;
-      transition:border-color .2s, color .2s;
-    " onmouseover="this.style.borderColor='#B8965A';this.style.color='#B8965A'"
-       onmouseout="this.style.borderColor='#1C1C21';this.style.color='#6B6860'"
-       aria-label="Закрыть">✕</button>
-  </div>
-  <iframe
-    id="proto-frame"
-    srcdoc="&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;ru&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-&lt;title&gt;Александр Морозов — CFO&lt;/title&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Manrope:wght@300;400;500;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;style&gt;
+<!-- ── Скрытый шаблон прототипа ── -->
+<script type="text/template" id="proto-html">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Александр Морозов — CFO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
 /* ════════════════════════════════════════════════
-   BASE RESET &amp; VARIABLES
+   BASE RESET & VARIABLES
 ════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -868,8 +852,8 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   --text:    #EDE9E2;
   --muted:   #6B6860;
   --muted2:  #3A3835;
-  --serif:   &#x27;Cormorant Garamond&#x27;, Georgia, serif;
-  --sans:    &#x27;Manrope&#x27;, system-ui, sans-serif;
+  --serif:   'Cormorant Garamond', Georgia, serif;
+  --sans:    'Manrope', system-ui, sans-serif;
 
   /* Spacing scale */
   --px:    20px;   /* horizontal padding mobile */
@@ -890,9 +874,9 @@ body {
 
 /* Grain */
 body::before {
-  content: &#x27;&#x27;;
+  content: '';
   position: fixed; inset: 0;
-  background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; width=&#x27;300&#x27; height=&#x27;300&#x27;%3E%3Cfilter id=&#x27;n&#x27;%3E%3CfeTurbulence type=&#x27;fractalNoise&#x27; baseFrequency=&#x27;0.75&#x27; numOctaves=&#x27;4&#x27; stitchTiles=&#x27;stitch&#x27;/%3E%3C/filter%3E%3Crect width=&#x27;300&#x27; height=&#x27;300&#x27; filter=&#x27;url(%23n)&#x27; opacity=&#x27;0.04&#x27;/%3E%3C/svg%3E&quot;);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none; z-index: 2; opacity: 0.45;
 }
 
@@ -1035,7 +1019,7 @@ nav.scrolled {
   color: var(--gold); margin-bottom: 28px;
 }
 .hero-label::before {
-  content: &#x27;&#x27;; display: block; width: 24px; height: 1px; background: var(--gold);
+  content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
 }
 
 .hero-name {
@@ -1093,7 +1077,7 @@ nav.scrolled {
 .stat-item:nth-child(even) { border-right: none; }
 .stat-item:nth-child(n+3) { border-bottom: none; }
 .stat-item::after {
-  content: &#x27;&#x27;; position: absolute; bottom: 0; left: 24px;
+  content: ''; position: absolute; bottom: 0; left: 24px;
   width: 0; height: 2px; background: var(--gold);
   transition: width .6s ease;
 }
@@ -1124,7 +1108,7 @@ section { padding: var(--sec) var(--px); position: relative; z-index: 1; }
   text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
   display: flex; align-items: center; gap: 10px;
 }
-.section-tag::before { content: &#x27;&#x27;; width: 20px; height: 1px; background: var(--gold); display: block; }
+.section-tag::before { content: ''; width: 20px; height: 1px; background: var(--gold); display: block; }
 
 .section-title {
   font-family: var(--serif);
@@ -1151,7 +1135,7 @@ section { padding: var(--sec) var(--px); position: relative; z-index: 1; }
 }
 .exp-card:active { background: #15151A; }
 .exp-card::before {
-  content: &#x27;&#x27;; position: absolute; top: 0; left: 0;
+  content: ''; position: absolute; top: 0; left: 0;
   width: 2px; height: 0; background: var(--gold);
   transition: height .4s ease;
 }
@@ -1641,503 +1625,504 @@ footer {
 }
 .modal-form-cta:hover { background: var(--gold-lt); }
 
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
+</style>
+</head>
+<body>
 
-&lt;!-- STICKY MOBILE CTA --&gt;
-&lt;a href=&quot;#&quot; class=&quot;sticky-cta nav-contact-trigger&quot; id=&quot;sticky-cta&quot;&gt;
+<!-- STICKY MOBILE CTA -->
+<a href="#" class="sticky-cta nav-contact-trigger" id="sticky-cta">
   Обсудить задачу
-  &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-    &lt;path d=&quot;M3 8h10M9 4l4 4-4 4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
-  &lt;/svg&gt;
-&lt;/a&gt;
+  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+</a>
 
-&lt;!-- MOBILE DRAWER --&gt;
-&lt;div class=&quot;nav-drawer&quot; id=&quot;nav-drawer&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Меню навигации&quot;&gt;
-  &lt;a href=&quot;#expertise&quot; class=&quot;drawer-link&quot;&gt;Экспертиза&lt;/a&gt;
-  &lt;a href=&quot;#cases&quot;     class=&quot;drawer-link&quot;&gt;Кейсы&lt;/a&gt;
-  &lt;a href=&quot;#about&quot;     class=&quot;drawer-link&quot;&gt;О себе&lt;/a&gt;
-  &lt;a href=&quot;#&quot; class=&quot;drawer-link nav-contact-trigger&quot;&gt;Контакт&lt;/a&gt;
-  &lt;a href=&quot;#&quot; class=&quot;drawer-cta nav-contact-trigger&quot;&gt;Обсудить задачу&lt;/a&gt;
-&lt;/div&gt;
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="nav-drawer" role="dialog" aria-modal="true" aria-label="Меню навигации">
+  <a href="#expertise" class="drawer-link">Экспертиза</a>
+  <a href="#cases"     class="drawer-link">Кейсы</a>
+  <a href="#about"     class="drawer-link">О себе</a>
+  <a href="#" class="drawer-link nav-contact-trigger">Контакт</a>
+  <a href="#" class="drawer-cta nav-contact-trigger">Обсудить задачу</a>
+</div>
 
-&lt;!-- NAV --&gt;
-&lt;nav id=&quot;main-nav&quot; role=&quot;navigation&quot; aria-label=&quot;Основная навигация&quot;&gt;
-  &lt;a href=&quot;#hero&quot; class=&quot;nav-name&quot;&gt;А. Морозов&lt;/a&gt;
-  &lt;ul class=&quot;nav-links&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;#expertise&quot;&gt;Экспертиза&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#cases&quot;&gt;Кейсы&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#about&quot;&gt;О себе&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;nav-contact-trigger&quot; aria-haspopup=&quot;dialog&quot;&gt;Контакт&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;a href=&quot;#&quot; class=&quot;nav-cta nav-contact-trigger&quot;&gt;Обсудить проект&lt;/a&gt;
-  &lt;button class=&quot;nav-burger&quot; id=&quot;nav-burger&quot; aria-label=&quot;Открыть меню&quot; aria-expanded=&quot;false&quot;&gt;
-    &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
-  &lt;/button&gt;
-&lt;/nav&gt;
+<!-- NAV -->
+<nav id="main-nav" role="navigation" aria-label="Основная навигация">
+  <a href="#hero" class="nav-name">А. Морозов</a>
+  <ul class="nav-links">
+    <li><a href="#expertise">Экспертиза</a></li>
+    <li><a href="#cases">Кейсы</a></li>
+    <li><a href="#about">О себе</a></li>
+    <li><a href="#" class="nav-contact-trigger" aria-haspopup="dialog">Контакт</a></li>
+  </ul>
+  <a href="#" class="nav-cta nav-contact-trigger">Обсудить проект</a>
+  <button class="nav-burger" id="nav-burger" aria-label="Открыть меню" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-&lt;!-- HERO --&gt;
-&lt;section id=&quot;hero&quot; aria-label=&quot;Главная&quot;&gt;
-  &lt;div class=&quot;hero-bg-line&quot;  aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;hero-bg-line2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+<!-- HERO -->
+<section id="hero" aria-label="Главная">
+  <div class="hero-bg-line"  aria-hidden="true"></div>
+  <div class="hero-bg-line2" aria-hidden="true"></div>
 
-  &lt;div class=&quot;hero-photo-col&quot;&gt;
-    &lt;div class=&quot;hero-photo-wrap&quot;&gt;
-      &lt;div class=&quot;hero-photo-deco&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
-      &lt;div class=&quot;hero-photo-frame&quot; aria-label=&quot;Фото — вставьте своё&quot;&gt;
-        &lt;span class=&quot;hero-photo-initials&quot; aria-hidden=&quot;true&quot;&gt;АМ&lt;/span&gt;
-        &lt;span class=&quot;hero-photo-hint&quot;&gt;← вставьте фото&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;hero-photo-tag&quot;&gt;
-        Доступен для проектов&amp;nbsp;&amp;nbsp;&lt;span&gt;→ 2025&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+  <div class="hero-photo-col">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-deco" aria-hidden="true"></div>
+      <div class="hero-photo-frame" aria-label="Фото - вставьте своё">
+        <span class="hero-photo-initials" aria-hidden="true">АМ</span>
+        <span class="hero-photo-hint">← вставьте фото</span>
+      </div>
+      <div class="hero-photo-tag">
+        Доступен для проектов&nbsp;&nbsp;<span>→ 2025</span>
+      </div>
+    </div>
+  </div>
 
-  &lt;div class=&quot;hero-content&quot;&gt;
-    &lt;div class=&quot;hero-label&quot;&gt;CFO · Head of Finance · Советник&lt;/div&gt;
-    &lt;h1 class=&quot;hero-name&quot;&gt;Александр&lt;br&gt;&lt;em&gt;Морозов&lt;/em&gt;&lt;/h1&gt;
-    &lt;p class=&quot;hero-description&quot;&gt;
-      Выстраиваю &lt;strong&gt;финансовую функцию и систему бизнес-планирования&lt;/strong&gt; для компаний на стадии роста — от постановки управленческого учёта до подготовки к M&amp;amp;A и привлечению финансирования.
-    &lt;/p&gt;
-    &lt;div class=&quot;hero-actions&quot;&gt;
-      &lt;a href=&quot;#&quot; class=&quot;btn-primary nav-contact-trigger&quot;&gt;
+  <div class="hero-content">
+    <div class="hero-label">CFO · Head of Finance · Советник</div>
+    <h1 class="hero-name">Александр<br><em>Морозов</em></h1>
+    <p class="hero-description">
+      Выстраиваю <strong>финансовую функцию и систему бизнес-планирования</strong> для компаний на стадии роста - от постановки управленческого учёта до подготовки к M&amp;A и привлечению финансирования.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary nav-contact-trigger">
         Обсудить задачу
-        &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; aria-hidden=&quot;true&quot;&gt;
-          &lt;path d=&quot;M3 8h10M9 4l4 4-4 4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
-        &lt;/svg&gt;
-      &lt;/a&gt;
-      &lt;a href=&quot;#cases&quot; class=&quot;btn-ghost&quot;&gt;Смотреть кейсы&lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="#cases" class="btn-ghost">Смотреть кейсы</a>
+    </div>
+  </div>
 
-  &lt;div class=&quot;scroll-indicator&quot; aria-hidden=&quot;true&quot;&gt;
-    &lt;span class=&quot;scroll-line&quot;&gt;&lt;/span&gt;
+  <div class="scroll-indicator" aria-hidden="true">
+    <span class="scroll-line"></span>
     Прокрутите вниз
-  &lt;/div&gt;
-&lt;/section&gt;
+  </div>
+</section>
 
-&lt;!-- STATS --&gt;
-&lt;div id=&quot;stats&quot; role=&quot;region&quot; aria-label=&quot;Статистика&quot;&gt;
-  &lt;div class=&quot;stat-item reveal&quot;&gt;
-    &lt;div class=&quot;stat-number&quot;&gt;14&lt;em&gt;+&lt;/em&gt;&lt;/div&gt;
-    &lt;div class=&quot;stat-label&quot;&gt;лет в финансах&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;stat-item reveal reveal-delay-1&quot;&gt;
-    &lt;div class=&quot;stat-number&quot;&gt;₽80&lt;em&gt;млрд&lt;/em&gt;&lt;/div&gt;
-    &lt;div class=&quot;stat-label&quot;&gt;под управлением&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;stat-item reveal reveal-delay-2&quot;&gt;
-    &lt;div class=&quot;stat-number&quot;&gt;3&lt;/div&gt;
-    &lt;div class=&quot;stat-label&quot;&gt;успешных IPO/SPO&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;stat-item reveal reveal-delay-3&quot;&gt;
-    &lt;div class=&quot;stat-number&quot;&gt;20&lt;em&gt;+&lt;/em&gt;&lt;/div&gt;
-    &lt;div class=&quot;stat-label&quot;&gt;компаний-клиентов&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<!-- STATS -->
+<div id="stats" role="region" aria-label="Статистика">
+  <div class="stat-item reveal">
+    <div class="stat-number">14<em>+</em></div>
+    <div class="stat-label">лет в финансах</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-number">₽80<em>млрд</em></div>
+    <div class="stat-label">под управлением</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-number">3</div>
+    <div class="stat-label">успешных IPO/SPO</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-number">20<em>+</em></div>
+    <div class="stat-label">компаний-клиентов</div>
+  </div>
+</div>
 
-&lt;!-- EXPERTISE --&gt;
-&lt;section id=&quot;expertise&quot; aria-labelledby=&quot;exp-heading&quot;&gt;
-  &lt;div class=&quot;section-header&quot;&gt;
-    &lt;div&gt;
-      &lt;div class=&quot;section-tag&quot;&gt;Направления&lt;/div&gt;
-      &lt;h2 class=&quot;section-title&quot; id=&quot;exp-heading&quot;&gt;Ключевая&lt;br&gt;&lt;em&gt;экспертиза&lt;/em&gt;&lt;/h2&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;expertise-grid&quot;&gt;
-    &lt;div class=&quot;exp-card reveal&quot;&gt;
-      &lt;div class=&quot;exp-num&quot;&gt;01&lt;/div&gt;
-      &lt;div class=&quot;exp-title&quot;&gt;Стратегическое финансовое управление&lt;/div&gt;
-      &lt;div class=&quot;exp-text&quot;&gt;Разработка финансовой стратегии, долгосрочное планирование, управление структурой капитала. Работа с советом директоров и акционерами.&lt;/div&gt;
-      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;CFO&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Стратегия&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;CAPEX&lt;/span&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;exp-card reveal reveal-delay-1&quot;&gt;
-      &lt;div class=&quot;exp-num&quot;&gt;02&lt;/div&gt;
-      &lt;div class=&quot;exp-title&quot;&gt;Бизнес-планирование и FP&amp;amp;A&lt;/div&gt;
-      &lt;div class=&quot;exp-text&quot;&gt;Построение систем бюджетирования, долгосрочного прогнозирования, управленческой отчётности и анализа отклонений в режиме реального времени.&lt;/div&gt;
-      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;FP&amp;amp;A&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Бюджетирование&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;BI&lt;/span&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;exp-card reveal reveal-delay-2&quot;&gt;
-      &lt;div class=&quot;exp-num&quot;&gt;03&lt;/div&gt;
-      &lt;div class=&quot;exp-title&quot;&gt;M&amp;amp;A и привлечение финансирования&lt;/div&gt;
-      &lt;div class=&quot;exp-text&quot;&gt;Финансовое моделирование сделок, due diligence, подготовка к IPO/SPO, структурирование долгового и акционерного финансирования.&lt;/div&gt;
-      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;M&amp;amp;A&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Due Diligence&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;IPO&lt;/span&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;exp-card reveal&quot;&gt;
-      &lt;div class=&quot;exp-num&quot;&gt;04&lt;/div&gt;
-      &lt;div class=&quot;exp-title&quot;&gt;Постановка управленческого учёта&lt;/div&gt;
-      &lt;div class=&quot;exp-text&quot;&gt;Внедрение МСФО, построение управленческой отчётности с нуля, автоматизация учётных процессов, переход от РСБУ к международным стандартам.&lt;/div&gt;
-      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;МСФО&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;РСБУ&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;ERP&lt;/span&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;exp-card reveal reveal-delay-1&quot;&gt;
-      &lt;div class=&quot;exp-num&quot;&gt;05&lt;/div&gt;
-      &lt;div class=&quot;exp-title&quot;&gt;Управление рисками и казначейство&lt;/div&gt;
-      &lt;div class=&quot;exp-text&quot;&gt;Выстраивание казначейства, управление ликвидностью, хеджирование, работа с банками и построение системы финансовых рисков.&lt;/div&gt;
-      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;Treasury&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Ликвидность&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Риски&lt;/span&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;exp-card reveal reveal-delay-2&quot;&gt;
-      &lt;div class=&quot;exp-num&quot;&gt;06&lt;/div&gt;
-      &lt;div class=&quot;exp-title&quot;&gt;Трансформация финансовой функции&lt;/div&gt;
-      &lt;div class=&quot;exp-text&quot;&gt;Реструктуризация финотдела, внедрение BI-инструментов, цифровизация процессов, построение команды и KPI финансовой службы.&lt;/div&gt;
-      &lt;div class=&quot;exp-tags&quot;&gt;&lt;span class=&quot;exp-tag&quot;&gt;Трансформация&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;BI&lt;/span&gt;&lt;span class=&quot;exp-tag&quot;&gt;Команда&lt;/span&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
+<!-- EXPERTISE -->
+<section id="expertise" aria-labelledby="exp-heading">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">Направления</div>
+      <h2 class="section-title" id="exp-heading">Ключевая<br><em>экспертиза</em></h2>
+    </div>
+  </div>
+  <div class="expertise-grid">
+    <div class="exp-card reveal">
+      <div class="exp-num">01</div>
+      <div class="exp-title">Стратегическое финансовое управление</div>
+      <div class="exp-text">Разработка финансовой стратегии, долгосрочное планирование, управление структурой капитала. Работа с советом директоров и акционерами.</div>
+      <div class="exp-tags"><span class="exp-tag">CFO</span><span class="exp-tag">Стратегия</span><span class="exp-tag">CAPEX</span></div>
+    </div>
+    <div class="exp-card reveal reveal-delay-1">
+      <div class="exp-num">02</div>
+      <div class="exp-title">Бизнес-планирование и FP&amp;A</div>
+      <div class="exp-text">Построение систем бюджетирования, долгосрочного прогнозирования, управленческой отчётности и анализа отклонений в режиме реального времени.</div>
+      <div class="exp-tags"><span class="exp-tag">FP&amp;A</span><span class="exp-tag">Бюджетирование</span><span class="exp-tag">BI</span></div>
+    </div>
+    <div class="exp-card reveal reveal-delay-2">
+      <div class="exp-num">03</div>
+      <div class="exp-title">M&amp;A и привлечение финансирования</div>
+      <div class="exp-text">Финансовое моделирование сделок, due diligence, подготовка к IPO/SPO, структурирование долгового и акционерного финансирования.</div>
+      <div class="exp-tags"><span class="exp-tag">M&amp;A</span><span class="exp-tag">Due Diligence</span><span class="exp-tag">IPO</span></div>
+    </div>
+    <div class="exp-card reveal">
+      <div class="exp-num">04</div>
+      <div class="exp-title">Постановка управленческого учёта</div>
+      <div class="exp-text">Внедрение МСФО, построение управленческой отчётности с нуля, автоматизация учётных процессов, переход от РСБУ к международным стандартам.</div>
+      <div class="exp-tags"><span class="exp-tag">МСФО</span><span class="exp-tag">РСБУ</span><span class="exp-tag">ERP</span></div>
+    </div>
+    <div class="exp-card reveal reveal-delay-1">
+      <div class="exp-num">05</div>
+      <div class="exp-title">Управление рисками и казначейство</div>
+      <div class="exp-text">Выстраивание казначейства, управление ликвидностью, хеджирование, работа с банками и построение системы финансовых рисков.</div>
+      <div class="exp-tags"><span class="exp-tag">Treasury</span><span class="exp-tag">Ликвидность</span><span class="exp-tag">Риски</span></div>
+    </div>
+    <div class="exp-card reveal reveal-delay-2">
+      <div class="exp-num">06</div>
+      <div class="exp-title">Трансформация финансовой функции</div>
+      <div class="exp-text">Реструктуризация финотдела, внедрение BI-инструментов, цифровизация процессов, построение команды и KPI финансовой службы.</div>
+      <div class="exp-tags"><span class="exp-tag">Трансформация</span><span class="exp-tag">BI</span><span class="exp-tag">Команда</span></div>
+    </div>
+  </div>
+</section>
 
-&lt;!-- CASES --&gt;
-&lt;section id=&quot;cases&quot; aria-labelledby=&quot;cases-heading&quot;&gt;
-  &lt;div class=&quot;section-header&quot;&gt;
-    &lt;div&gt;
-      &lt;div class=&quot;section-tag&quot;&gt;Результаты&lt;/div&gt;
-      &lt;h2 class=&quot;section-title&quot; id=&quot;cases-heading&quot;&gt;Избранные&lt;br&gt;&lt;em&gt;кейсы&lt;/em&gt;&lt;/h2&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;cases-list&quot;&gt;
+<!-- CASES -->
+<section id="cases" aria-labelledby="cases-heading">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">Результаты</div>
+      <h2 class="section-title" id="cases-heading">Избранные<br><em>кейсы</em></h2>
+    </div>
+  </div>
+  <div class="cases-list">
 
-    &lt;article class=&quot;case-item reveal&quot;&gt;
-      &lt;div class=&quot;case-num&quot; aria-hidden=&quot;true&quot;&gt;01&lt;/div&gt;
-      &lt;div&gt;
-        &lt;div class=&quot;case-company&quot;&gt;Ритейл · 2500+ точек&lt;/div&gt;
-        &lt;h3 class=&quot;case-title&quot;&gt;Построение системы FP&amp;amp;A с нуля и переход на единую управленческую отчётность&lt;/h3&gt;
-        &lt;div class=&quot;case-body&quot;&gt;
-          Компания работала без единой системы бюджетирования: каждый дивизион вёл учёт самостоятельно. &lt;strong&gt;Внедрил интегрированную FP&amp;amp;A-платформу, сократил цикл закрытия месяца с 18 до 4 дней&lt;/strong&gt; и обеспечил онлайн-видимость финансовых результатов для топ-менеджмента.
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;case-result&quot; aria-label=&quot;Результат: минус 78% время закрытия&quot;&gt;
-        &lt;div class=&quot;case-result-num&quot;&gt;−78%&lt;/div&gt;
-        &lt;div class=&quot;case-result-label&quot;&gt;время закрытия&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/article&gt;
+    <article class="case-item reveal">
+      <div class="case-num" aria-hidden="true">01</div>
+      <div>
+        <div class="case-company">Ритейл · 2500+ точек</div>
+        <h3 class="case-title">Построение системы FP&amp;A с нуля и переход на единую управленческую отчётность</h3>
+        <div class="case-body">
+          Компания работала без единой системы бюджетирования: каждый дивизион вёл учёт самостоятельно. <strong>Внедрил интегрированную FP&amp;A-платформу, сократил цикл закрытия месяца с 18 до 4 дней</strong> и обеспечил онлайн-видимость финансовых результатов для топ-менеджмента.
+        </div>
+      </div>
+      <div class="case-result" aria-label="Результат: минус 78% время закрытия">
+        <div class="case-result-num">−78%</div>
+        <div class="case-result-label">время закрытия</div>
+      </div>
+    </article>
 
-    &lt;article class=&quot;case-item reveal&quot;&gt;
-      &lt;div class=&quot;case-num&quot; aria-hidden=&quot;true&quot;&gt;02&lt;/div&gt;
-      &lt;div&gt;
-        &lt;div class=&quot;case-company&quot;&gt;Технологическая компания · Series B&lt;/div&gt;
-        &lt;h3 class=&quot;case-title&quot;&gt;Подготовка к привлечению раунда и структурирование долгосрочного финансирования&lt;/h3&gt;
-        &lt;div class=&quot;case-body&quot;&gt;
-          &lt;strong&gt;Выстроил финансовую модель, investor deck и пакет due diligence&lt;/strong&gt; для привлечения раунда $30 млн. Параллельно структурировал кредитную линию с тремя банками, оптимизировав стоимость долга на 2,3 п.п.
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;case-result&quot; aria-label=&quot;Результат: привлечено $30 млн&quot;&gt;
-        &lt;div class=&quot;case-result-num&quot;&gt;$30M&lt;/div&gt;
-        &lt;div class=&quot;case-result-label&quot;&gt;привлечено&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/article&gt;
+    <article class="case-item reveal">
+      <div class="case-num" aria-hidden="true">02</div>
+      <div>
+        <div class="case-company">Технологическая компания · Series B</div>
+        <h3 class="case-title">Подготовка к привлечению раунда и структурирование долгосрочного финансирования</h3>
+        <div class="case-body">
+          <strong>Выстроил финансовую модель, investor deck и пакет due diligence</strong> для привлечения раунда $30 млн. Параллельно структурировал кредитную линию с тремя банками, оптимизировав стоимость долга на 2,3 п.п.
+        </div>
+      </div>
+      <div class="case-result" aria-label="Результат: привлечено $30 млн">
+        <div class="case-result-num">$30M</div>
+        <div class="case-result-label">привлечено</div>
+      </div>
+    </article>
 
-    &lt;article class=&quot;case-item reveal&quot;&gt;
-      &lt;div class=&quot;case-num&quot; aria-hidden=&quot;true&quot;&gt;03&lt;/div&gt;
-      &lt;div&gt;
-        &lt;div class=&quot;case-company&quot;&gt;Производство · Группа компаний&lt;/div&gt;
-        &lt;h3 class=&quot;case-title&quot;&gt;Финансовая интеграция после M&amp;amp;A: объединение трёх юридических лиц&lt;/h3&gt;
-        &lt;div class=&quot;case-body&quot;&gt;
-          После поглощения трёх активов группа вела разрозненный учёт в несовместимых системах. &lt;strong&gt;Объединил финансовую функцию за 9 месяцев, перевёл на единый план счетов и стандарт МСФО&lt;/strong&gt;, сократил ФОТ финотдела на 22% без потери качества.
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;case-result&quot; aria-label=&quot;Результат: минус 22% ФОТ финотдела&quot;&gt;
-        &lt;div class=&quot;case-result-num&quot;&gt;−22%&lt;/div&gt;
-        &lt;div class=&quot;case-result-label&quot;&gt;ФОТ финотдела&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/article&gt;
+    <article class="case-item reveal">
+      <div class="case-num" aria-hidden="true">03</div>
+      <div>
+        <div class="case-company">Производство · Группа компаний</div>
+        <h3 class="case-title">Финансовая интеграция после M&amp;A: объединение трёх юридических лиц</h3>
+        <div class="case-body">
+          После поглощения трёх активов группа вела разрозненный учёт в несовместимых системах. <strong>Объединил финансовую функцию за 9 месяцев, перевёл на единый план счетов и стандарт МСФО</strong>, сократил ФОТ финотдела на 22% без потери качества.
+        </div>
+      </div>
+      <div class="case-result" aria-label="Результат: минус 22% ФОТ финотдела">
+        <div class="case-result-num">−22%</div>
+        <div class="case-result-label">ФОТ финотдела</div>
+      </div>
+    </article>
 
-  &lt;/div&gt;
-&lt;/section&gt;
+  </div>
+</section>
 
-&lt;!-- ABOUT --&gt;
-&lt;section id=&quot;about&quot; aria-labelledby=&quot;about-heading&quot;&gt;
-  &lt;div class=&quot;about-left&quot;&gt;
-    &lt;div class=&quot;section-tag&quot;&gt;О себе&lt;/div&gt;
-    &lt;h2 class=&quot;section-title about-title&quot; id=&quot;about-heading&quot;&gt;Опыт&lt;br&gt;&lt;em&gt;и подход&lt;/em&gt;&lt;/h2&gt;
-    &lt;div class=&quot;about-text reveal&quot;&gt;
-      &lt;p&gt;Более 14 лет работаю на стыке финансов и стратегии в компаниях от Series A до публичных групп с выручкой 50+ млрд рублей. Прошёл путь от финансового аналитика до CFO, успел поработать в ритейле, технологиях и производственном секторе.&lt;/p&gt;
-      &lt;p&gt;Верю, что &lt;strong&gt;главная задача финансового директора — не контроль, а создание информационной среды&lt;/strong&gt;, в которой CEO и акционеры принимают более быстрые и точные решения. Финансы должны быть партнёром бизнеса, а не тормозом.&lt;/p&gt;
-      &lt;p&gt;Открыт к проектной работе в роли &lt;strong&gt;Fractional CFO&lt;/strong&gt;, участию в советах директоров и консультированию по трансформации финансовой функции.&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;about-right reveal reveal-delay-1&quot;&gt;
-    &lt;div class=&quot;section-tag&quot;&gt;Образование и сертификаты&lt;/div&gt;
-    &lt;ul class=&quot;creds-list&quot;&gt;
-      &lt;li&gt;
-        &lt;div&gt;&lt;div class=&quot;cred-title&quot;&gt;MBA, Finance&lt;/div&gt;&lt;div class=&quot;cred-meta&quot;&gt;London Business School, 2014&lt;/div&gt;&lt;/div&gt;
-        &lt;span class=&quot;cred-badge&quot;&gt;MBA&lt;/span&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;div&gt;&lt;div class=&quot;cred-title&quot;&gt;ACCA — полная квалификация&lt;/div&gt;&lt;div class=&quot;cred-meta&quot;&gt;Chartered Certified Accountants&lt;/div&gt;&lt;/div&gt;
-        &lt;span class=&quot;cred-badge&quot;&gt;ACCA&lt;/span&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;div&gt;&lt;div class=&quot;cred-title&quot;&gt;CFA Level III&lt;/div&gt;&lt;div class=&quot;cred-meta&quot;&gt;CFA Institute, 2017&lt;/div&gt;&lt;/div&gt;
-        &lt;span class=&quot;cred-badge&quot;&gt;CFA&lt;/span&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;div&gt;&lt;div class=&quot;cred-title&quot;&gt;Экономика, Финансы&lt;/div&gt;&lt;div class=&quot;cred-meta&quot;&gt;МГУ им. Ломоносова, 2010&lt;/div&gt;&lt;/div&gt;
-        &lt;span class=&quot;cred-badge&quot;&gt;МГУ&lt;/span&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
+<!-- ABOUT -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="about-left">
+    <div class="section-tag">О себе</div>
+    <h2 class="section-title about-title" id="about-heading">Опыт<br><em>и подход</em></h2>
+    <div class="about-text reveal">
+      <p>Более 14 лет работаю на стыке финансов и стратегии в компаниях от Series A до публичных групп с выручкой 50+ млрд рублей. Прошёл путь от финансового аналитика до CFO, успел поработать в ритейле, технологиях и производственном секторе.</p>
+      <p>Верю, что <strong>главная задача финансового директора - не контроль, а создание информационной среды</strong>, в которой CEO и акционеры принимают более быстрые и точные решения. Финансы должны быть партнёром бизнеса, а не тормозом.</p>
+      <p>Открыт к проектной работе в роли <strong>Fractional CFO</strong>, участию в советах директоров и консультированию по трансформации финансовой функции.</p>
+    </div>
+  </div>
+  <div class="about-right reveal reveal-delay-1">
+    <div class="section-tag">Образование и сертификаты</div>
+    <ul class="creds-list">
+      <li>
+        <div><div class="cred-title">MBA, Finance</div><div class="cred-meta">London Business School, 2014</div></div>
+        <span class="cred-badge">MBA</span>
+      </li>
+      <li>
+        <div><div class="cred-title">ACCA - полная квалификация</div><div class="cred-meta">Chartered Certified Accountants</div></div>
+        <span class="cred-badge">ACCA</span>
+      </li>
+      <li>
+        <div><div class="cred-title">CFA Level III</div><div class="cred-meta">CFA Institute, 2017</div></div>
+        <span class="cred-badge">CFA</span>
+      </li>
+      <li>
+        <div><div class="cred-title">Экономика, Финансы</div><div class="cred-meta">МГУ им. Ломоносова, 2010</div></div>
+        <span class="cred-badge">МГУ</span>
+      </li>
+    </ul>
+  </div>
+</section>
 
-&lt;!-- TESTIMONIALS --&gt;
-&lt;section id=&quot;testimonials&quot; aria-labelledby=&quot;testi-heading&quot;&gt;
-  &lt;div class=&quot;section-header&quot;&gt;
-    &lt;div&gt;
-      &lt;div class=&quot;section-tag&quot;&gt;Отзывы&lt;/div&gt;
-      &lt;h2 class=&quot;section-title&quot; id=&quot;testi-heading&quot;&gt;Говорят&lt;br&gt;&lt;em&gt;партнёры&lt;/em&gt;&lt;/h2&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;testi-grid&quot;&gt;
-    &lt;blockquote class=&quot;testi-card reveal&quot;&gt;
-      &lt;div class=&quot;testi-quote&quot; aria-hidden=&quot;true&quot;&gt;&quot;&lt;/div&gt;
-      &lt;p class=&quot;testi-text&quot;&gt;Александр полностью изменил наше представление о том, как должна работать финансовая функция в растущей компании. За год мы перешли от Excel-хаоса к системной отчётности, которой доверяют инвесторы.&lt;/p&gt;
-      &lt;footer class=&quot;testi-author&quot;&gt;
-        &lt;div class=&quot;testi-name&quot;&gt;Михаил Козлов&lt;/div&gt;
-        &lt;div class=&quot;testi-role&quot;&gt;CEO, TechVenture Group&lt;/div&gt;
-      &lt;/footer&gt;
-    &lt;/blockquote&gt;
-    &lt;blockquote class=&quot;testi-card reveal reveal-delay-1&quot;&gt;
-      &lt;div class=&quot;testi-quote&quot; aria-hidden=&quot;true&quot;&gt;&quot;&lt;/div&gt;
-      &lt;p class=&quot;testi-text&quot;&gt;Редкое сочетание: человек, который говорит на языке акционеров и инвесторов, при этом отлично понимает операционную реальность. Привлечение раунда прошло значительно быстрее, чем мы ожидали.&lt;/p&gt;
-      &lt;footer class=&quot;testi-author&quot;&gt;
-        &lt;div class=&quot;testi-name&quot;&gt;Елена Сорокина&lt;/div&gt;
-        &lt;div class=&quot;testi-role&quot;&gt;Основатель, Retail Platform&lt;/div&gt;
-      &lt;/footer&gt;
-    &lt;/blockquote&gt;
-    &lt;blockquote class=&quot;testi-card reveal reveal-delay-2&quot;&gt;
-      &lt;div class=&quot;testi-quote&quot; aria-hidden=&quot;true&quot;&gt;&quot;&lt;/div&gt;
-      &lt;p class=&quot;testi-text&quot;&gt;Работали с Александром в роли Fractional CFO в период интеграции активов. Его способность выстраивать консенсус между командами оказалась не менее ценной, чем финансовая экспертиза.&lt;/p&gt;
-      &lt;footer class=&quot;testi-author&quot;&gt;
-        &lt;div class=&quot;testi-name&quot;&gt;Андрей Волков&lt;/div&gt;
-        &lt;div class=&quot;testi-role&quot;&gt;Партнёр, Meridian Capital&lt;/div&gt;
-      &lt;/footer&gt;
-    &lt;/blockquote&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
+<!-- TESTIMONIALS -->
+<section id="testimonials" aria-labelledby="testi-heading">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">Отзывы</div>
+      <h2 class="section-title" id="testi-heading">Говорят<br><em>партнёры</em></h2>
+    </div>
+  </div>
+  <div class="testi-grid">
+    <blockquote class="testi-card reveal">
+      <div class="testi-quote" aria-hidden="true">"</div>
+      <p class="testi-text">Александр полностью изменил наше представление о том, как должна работать финансовая функция в растущей компании. За год мы перешли от Excel-хаоса к системной отчётности, которой доверяют инвесторы.</p>
+      <footer class="testi-author">
+        <div class="testi-name">Михаил Козлов</div>
+        <div class="testi-role">CEO, TechVenture Group</div>
+      </footer>
+    </blockquote>
+    <blockquote class="testi-card reveal reveal-delay-1">
+      <div class="testi-quote" aria-hidden="true">"</div>
+      <p class="testi-text">Редкое сочетание: человек, который говорит на языке акционеров и инвесторов, при этом отлично понимает операционную реальность. Привлечение раунда прошло значительно быстрее, чем мы ожидали.</p>
+      <footer class="testi-author">
+        <div class="testi-name">Елена Сорокина</div>
+        <div class="testi-role">Основатель, Retail Platform</div>
+      </footer>
+    </blockquote>
+    <blockquote class="testi-card reveal reveal-delay-2">
+      <div class="testi-quote" aria-hidden="true">"</div>
+      <p class="testi-text">Работали с Александром в роли Fractional CFO в период интеграции активов. Его способность выстраивать консенсус между командами оказалась не менее ценной, чем финансовая экспертиза.</p>
+      <footer class="testi-author">
+        <div class="testi-name">Андрей Волков</div>
+        <div class="testi-role">Партнёр, Meridian Capital</div>
+      </footer>
+    </blockquote>
+  </div>
+</section>
 
-&lt;!-- CONTACT --&gt;
-&lt;section id=&quot;contact&quot; aria-labelledby=&quot;contact-heading&quot;&gt;
-  &lt;div class=&quot;contact-left&quot;&gt;
-    &lt;div class=&quot;section-tag&quot;&gt;Напишите напрямую&lt;/div&gt;
-    &lt;h2 class=&quot;contact-lead&quot; id=&quot;contact-heading&quot;&gt;Обсудим&lt;br&gt;&lt;em&gt;вашу задачу&lt;/em&gt;&lt;/h2&gt;
-    &lt;p class=&quot;contact-sub&quot;&gt;Заполните форму — отвечу в течение одного рабочего дня. Или &lt;a href=&quot;#&quot; class=&quot;nav-contact-trigger&quot; style=&quot;color:var(--gold);border-bottom:1px solid var(--gold-dim)&quot;&gt;откройте контакты&lt;/a&gt; для прямой связи.&lt;/p&gt;
-  &lt;/div&gt;
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-heading">
+  <div class="contact-left">
+    <div class="section-tag">Напишите напрямую</div>
+    <h2 class="contact-lead" id="contact-heading">Обсудим<br><em>вашу задачу</em></h2>
+    <p class="contact-sub">Заполните форму - отвечу в течение одного рабочего дня. Или <a href="#" class="nav-contact-trigger" style="color:var(--gold);border-bottom:1px solid var(--gold-dim)">откройте контакты</a> для прямой связи.</p>
+  </div>
 
-  &lt;div class=&quot;contact-form-wrap reveal&quot;&gt;
-    &lt;div class=&quot;section-tag&quot;&gt;Написать напрямую&lt;/div&gt;
-    &lt;form class=&quot;contact-form&quot; id=&quot;contact-form&quot; novalidate&gt;
-      &lt;div class=&quot;form-grid&quot;&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label for=&quot;f-name&quot;&gt;Имя&lt;/label&gt;
-          &lt;input id=&quot;f-name&quot; type=&quot;text&quot; name=&quot;name&quot; placeholder=&quot;Иван Петров&quot; autocomplete=&quot;name&quot;&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label for=&quot;f-company&quot;&gt;Компания&lt;/label&gt;
-          &lt;input id=&quot;f-company&quot; type=&quot;text&quot; name=&quot;company&quot; placeholder=&quot;ООО «Название»&quot; autocomplete=&quot;organization&quot;&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label for=&quot;f-email&quot;&gt;Email&lt;/label&gt;
-        &lt;input id=&quot;f-email&quot; type=&quot;email&quot; name=&quot;email&quot; placeholder=&quot;ivan@company.ru&quot; autocomplete=&quot;email&quot;&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label for=&quot;f-message&quot;&gt;Ваша задача&lt;/label&gt;
-        &lt;textarea id=&quot;f-message&quot; name=&quot;message&quot; placeholder=&quot;Опишите задачу — построить отчётность, подготовиться к раунду, пройти due diligence...&quot;&gt;&lt;/textarea&gt;
-      &lt;/div&gt;
-      &lt;button type=&quot;submit&quot; class=&quot;form-submit&quot; id=&quot;form-submit&quot;&gt;
+  <div class="contact-form-wrap reveal">
+    <div class="section-tag">Написать напрямую</div>
+    <form class="contact-form" id="contact-form" novalidate>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="f-name">Имя</label>
+          <input id="f-name" type="text" name="name" placeholder="Иван Петров" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="f-company">Компания</label>
+          <input id="f-company" type="text" name="company" placeholder="ООО «Название»" autocomplete="organization">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="email" placeholder="ivan@company.ru" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="f-message">Ваша задача</label>
+        <textarea id="f-message" name="message" placeholder="Опишите задачу - построить отчётность, подготовиться к раунду, пройти due diligence..."></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="form-submit">
         Отправить
-        &lt;svg width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;
-          &lt;path d=&quot;M3 8h10M9 4l4 4-4 4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
-        &lt;/svg&gt;
-      &lt;/button&gt;
-    &lt;/form&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</section>
 
-&lt;!-- FOOTER --&gt;
-&lt;footer&gt;
-  &lt;div class=&quot;footer-copy&quot;&gt;© 2025 Александр Морозов · CFO · Финансовый советник&lt;/div&gt;
-  &lt;div class=&quot;footer-links&quot;&gt;
-    &lt;a href=&quot;#hero&quot;&gt;Наверх ↑&lt;/a&gt;
-    &lt;a href=&quot;#expertise&quot;&gt;Экспертиза&lt;/a&gt;
-    &lt;a href=&quot;#cases&quot;&gt;Кейсы&lt;/a&gt;
-    &lt;a href=&quot;#about&quot;&gt;О себе&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/footer&gt;
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Александр Морозов · CFO · Финансовый советник</div>
+  <div class="footer-links">
+    <a href="#hero">Наверх ↑</a>
+    <a href="#expertise">Экспертиза</a>
+    <a href="#cases">Кейсы</a>
+    <a href="#about">О себе</a>
+  </div>
+</footer>
 
-&lt;!-- CONTACT MODAL --&gt;
-&lt;div class=&quot;contact-modal-overlay&quot; id=&quot;contact-overlay&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;
-&lt;aside class=&quot;contact-modal&quot; id=&quot;contact-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Контакт&quot;&gt;
-  &lt;div class=&quot;modal-header&quot;&gt;
-    &lt;span class=&quot;modal-title&quot;&gt;Контакт&lt;/span&gt;
-    &lt;button class=&quot;modal-close&quot; id=&quot;modal-close&quot; aria-label=&quot;Закрыть&quot;&gt;
-      &lt;svg width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;
-        &lt;path d=&quot;M2 2l12 12M14 2L2 14&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
-      &lt;/svg&gt;
-    &lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;modal-body&quot;&gt;
-    &lt;h2 class=&quot;modal-heading&quot;&gt;Давайте&lt;br&gt;&lt;em&gt;поговорим&lt;/em&gt;&lt;/h2&gt;
-    &lt;p class=&quot;modal-sub&quot;&gt;Открыт к проектной работе, консультациям и участию в совете директоров.&lt;/p&gt;
-    &lt;nav class=&quot;modal-links&quot; aria-label=&quot;Способы связи&quot;&gt;
-      &lt;a href=&quot;mailto:alexander@morozov.finance&quot; class=&quot;modal-link&quot;&gt;
-        &lt;div class=&quot;modal-link-body&quot;&gt;
-          &lt;div class=&quot;modal-link-meta&quot;&gt;Email&lt;/div&gt;
-          &lt;div class=&quot;modal-link-value&quot;&gt;alexander@morozov.finance&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;modal-arrow&quot; aria-hidden=&quot;true&quot;&gt;
-          &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M3 13L13 3M13 3H5M13 3v8&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
-        &lt;/div&gt;
-      &lt;/a&gt;
-      &lt;a href=&quot;https://linkedin.com/in/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;modal-link&quot;&gt;
-        &lt;div class=&quot;modal-link-body&quot;&gt;
-          &lt;div class=&quot;modal-link-meta&quot;&gt;LinkedIn&lt;/div&gt;
-          &lt;div class=&quot;modal-link-value&quot;&gt;linkedin.com/in/morozov-cfo&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;modal-arrow&quot; aria-hidden=&quot;true&quot;&gt;
-          &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M3 13L13 3M13 3H5M13 3v8&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
-        &lt;/div&gt;
-      &lt;/a&gt;
-      &lt;a href=&quot;https://t.me/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;modal-link&quot;&gt;
-        &lt;div class=&quot;modal-link-body&quot;&gt;
-          &lt;div class=&quot;modal-link-meta&quot;&gt;Telegram&lt;/div&gt;
-          &lt;div class=&quot;modal-link-value&quot;&gt;@morozov_cfo&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;modal-arrow&quot; aria-hidden=&quot;true&quot;&gt;
-          &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M3 13L13 3M13 3H5M13 3v8&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
-        &lt;/div&gt;
-      &lt;/a&gt;
-    &lt;/nav&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;modal-footer&quot;&gt;
-    &lt;a href=&quot;#contact&quot; class=&quot;modal-form-cta&quot; id=&quot;modal-to-form&quot;&gt;
+<!-- CONTACT MODAL -->
+<div class="contact-modal-overlay" id="contact-overlay" role="presentation"></div>
+<aside class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-label="Контакт">
+  <div class="modal-header">
+    <span class="modal-title">Контакт</span>
+    <button class="modal-close" id="modal-close" aria-label="Закрыть">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h2 class="modal-heading">Давайте<br><em>поговорим</em></h2>
+    <p class="modal-sub">Открыт к проектной работе, консультациям и участию в совете директоров.</p>
+    <nav class="modal-links" aria-label="Способы связи">
+      <a href="mailto:alexander@morozov.finance" class="modal-link">
+        <div class="modal-link-body">
+          <div class="modal-link-meta">Email</div>
+          <div class="modal-link-value">alexander@morozov.finance</div>
+        </div>
+        <div class="modal-arrow" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3v8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer" class="modal-link">
+        <div class="modal-link-body">
+          <div class="modal-link-meta">LinkedIn</div>
+          <div class="modal-link-value">linkedin.com/in/morozov-cfo</div>
+        </div>
+        <div class="modal-arrow" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3v8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+      <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="modal-link">
+        <div class="modal-link-body">
+          <div class="modal-link-meta">Telegram</div>
+          <div class="modal-link-value">@morozov_cfo</div>
+        </div>
+        <div class="modal-arrow" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3v8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+    </nav>
+  </div>
+  <div class="modal-footer">
+    <a href="#contact" class="modal-form-cta" id="modal-to-form">
       Написать через форму
-      &lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot;&gt;
-        &lt;path d=&quot;M3 8h10M9 4l4 4-4 4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/&gt;
-      &lt;/svg&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-&lt;/aside&gt;
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+</aside>
 
-&lt;script&gt;
+<script>
 /* ── Nav scroll ── */
-const nav = document.getElementById(&#x27;main-nav&#x27;);
-window.addEventListener(&#x27;scroll&#x27;, () =&gt; {
-  nav.classList.toggle(&#x27;scrolled&#x27;, window.scrollY &gt; 60);
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
 /* ── Burger menu ── */
-const burger = document.getElementById(&#x27;nav-burger&#x27;);
-const drawer = document.getElementById(&#x27;nav-drawer&#x27;);
+const burger = document.getElementById('nav-burger');
+const drawer = document.getElementById('nav-drawer');
 
 function closeDrawer() {
-  burger.classList.remove(&#x27;open&#x27;);
-  drawer.classList.remove(&#x27;open&#x27;);
-  burger.setAttribute(&#x27;aria-expanded&#x27;, &#x27;false&#x27;);
-  document.body.style.overflow = &#x27;&#x27;;
+  burger.classList.remove('open');
+  drawer.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
 }
 function openDrawer() {
-  burger.classList.add(&#x27;open&#x27;);
-  drawer.classList.add(&#x27;open&#x27;);
-  burger.setAttribute(&#x27;aria-expanded&#x27;, &#x27;true&#x27;);
-  document.body.style.overflow = &#x27;hidden&#x27;;
+  burger.classList.add('open');
+  drawer.classList.add('open');
+  burger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
 }
-burger.addEventListener(&#x27;click&#x27;, () =&gt; {
-  drawer.classList.contains(&#x27;open&#x27;) ? closeDrawer() : openDrawer();
+burger.addEventListener('click', () => {
+  drawer.classList.contains('open') ? closeDrawer() : openDrawer();
 });
-drawer.querySelectorAll(&#x27;a:not(.nav-contact-trigger)&#x27;).forEach(a =&gt; a.addEventListener(&#x27;click&#x27;, closeDrawer));
-document.addEventListener(&#x27;keydown&#x27;, e =&gt; { if (e.key === &#x27;Escape&#x27;) { closeDrawer(); closeContactModal(); } });
+drawer.querySelectorAll('a:not(.nav-contact-trigger)').forEach(a => a.addEventListener('click', closeDrawer));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrawer(); closeContactModal(); } });
 
 /* ── Contact Modal ── */
-const overlay    = document.getElementById(&#x27;contact-overlay&#x27;);
-const modal      = document.getElementById(&#x27;contact-modal&#x27;);
-const modalClose = document.getElementById(&#x27;modal-close&#x27;);
-const modalToForm = document.getElementById(&#x27;modal-to-form&#x27;);
+const overlay    = document.getElementById('contact-overlay');
+const modal      = document.getElementById('contact-modal');
+const modalClose = document.getElementById('modal-close');
+const modalToForm = document.getElementById('modal-to-form');
 
 function openContactModal(e) {
   if (e) e.preventDefault();
   closeDrawer();
   if (!overlay || !modal) return;
-  overlay.classList.add(&#x27;open&#x27;);
-  modal.classList.add(&#x27;open&#x27;);
-  document.body.style.overflow = &#x27;hidden&#x27;;
+  overlay.classList.add('open');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
   if (modalClose) modalClose.focus();
 }
 function closeContactModal() {
   if (!overlay || !modal) return;
-  overlay.classList.remove(&#x27;open&#x27;);
-  modal.classList.remove(&#x27;open&#x27;);
-  document.body.style.overflow = &#x27;&#x27;;
+  overlay.classList.remove('open');
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
-document.querySelectorAll(&#x27;.nav-contact-trigger&#x27;).forEach(el =&gt; {
-  el.addEventListener(&#x27;click&#x27;, openContactModal);
+document.querySelectorAll('.nav-contact-trigger').forEach(el => {
+  el.addEventListener('click', openContactModal);
 });
 
-if (overlay)    overlay.addEventListener(&#x27;click&#x27;, closeContactModal);
-if (modalClose) modalClose.addEventListener(&#x27;click&#x27;, closeContactModal);
-if (modalToForm) modalToForm.addEventListener(&#x27;click&#x27;, (e) =&gt; {
+if (overlay)    overlay.addEventListener('click', closeContactModal);
+if (modalClose) modalClose.addEventListener('click', closeContactModal);
+if (modalToForm) modalToForm.addEventListener('click', (e) => {
   e.preventDefault();
   closeContactModal();
-  setTimeout(() =&gt; {
-    const cs = document.getElementById(&#x27;contact&#x27;);
-    if (cs) cs.scrollIntoView({ behavior: &#x27;smooth&#x27; });
+  setTimeout(() => {
+    const cs = document.getElementById('contact');
+    if (cs) cs.scrollIntoView({ behavior: 'smooth' });
   }, 350);
 });
 
 /* ── Scroll reveal ── */
-const revealObserver = new IntersectionObserver((entries) =&gt; {
-  entries.forEach(e =&gt; { if (e.isIntersecting) e.target.classList.add(&#x27;visible&#x27;); });
-}, { threshold: 0.1, rootMargin: &#x27;0px 0px -32px 0px&#x27; });
-document.querySelectorAll(&#x27;.reveal&#x27;).forEach(el =&gt; revealObserver.observe(el));
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* ── Sticky CTA ── */
-const stickyCta = document.getElementById(&#x27;sticky-cta&#x27;);
-const contactSection = document.getElementById(&#x27;contact&#x27;);
-const ctaObserver = new IntersectionObserver((entries) =&gt; {
-  entries.forEach(e =&gt; { stickyCta.classList.toggle(&#x27;hidden&#x27;, e.isIntersecting); });
+const stickyCta = document.getElementById('sticky-cta');
+const contactSection = document.getElementById('contact');
+const ctaObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { stickyCta.classList.toggle('hidden', e.isIntersecting); });
 }, { threshold: 0.1 });
 ctaObserver.observe(contactSection);
 
 /* ── Form submit ── */
-document.getElementById(&#x27;contact-form&#x27;).addEventListener(&#x27;submit&#x27;, function(e) {
+document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const btn = document.getElementById(&#x27;form-submit&#x27;);
+  const btn = document.getElementById('form-submit');
   const original = btn.innerHTML;
-  btn.innerHTML = &#x27;Отправлено ✓&#x27;;
-  btn.style.background = &#x27;#4A7C5A&#x27;;
+  btn.innerHTML = 'Отправлено ✓';
+  btn.style.background = '#4A7C5A';
   btn.disabled = true;
-  setTimeout(() =&gt; {
+  setTimeout(() => {
     btn.innerHTML = original;
-    btn.style.background = &#x27;&#x27;;
+    btn.style.background = '';
     btn.disabled = false;
     this.reset();
   }, 3500);
 });
-&lt;/script&gt;
-
-
-&lt;/body&gt;"
-    style="flex:1; width:100%; border:none; background:#09090B;"
-    title="Прототип сайта-визитки CFO"
-  ></iframe>
-</div>
-
+<\/script>
+</body>
+</html>
+</script>
 
 <script>
+const nav = document.getElementById('top-nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Открытие прототипа в новой вкладке
 function openProto(e) {
   if (e) e.preventDefault();
-  var m = document.getElementById('proto-modal');
-  m.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+  // Забираем HTML прототипа из скрытого шаблона
+  const protoContent = document.getElementById('proto-html').textContent;
+  
+  // Создаем Blob и генерируем временный URL
+  const blob = new Blob([protoContent], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  
+  // Открываем новую вкладку
+  window.open(url, '_blank');
 }
-function closeProto() {
-  var m = document.getElementById('proto-modal');
-  m.style.display = 'none';
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeProto();
-});
 </script>
 
 </body>
